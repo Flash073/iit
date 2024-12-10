@@ -1,0 +1,3612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>C++ Programs</title>
+    <style>
+        body {
+        background-image: url('bg.png');
+        background-size: cover; /* This will make the background cover the entire area */
+        background-repeat: no-repeat; /* Prevents the background from repeating */
+        /*background-position: center; /* Centers the background image */
+}
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column; /* Stack all elements vertically */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            padding-inline: 50px;
+            padding-left: 230px;
+            
+        }
+
+        .flex-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 20px; /* Space between blocks */
+        }
+
+        .flex-cell {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .flex-cell:hover {
+            background-color: #f5f5f5;
+        }
+
+        .flex-cell .title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .flex-container {
+                padding-inline: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .flex-cell {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- First group -->
+    <div class="flex-container">
+        <div class="flex-cell" onclick="copyText('oop')">
+            <div class="title">Entire OOP</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('cg')">
+            <div class="title">Entire CG</div>
+        </div>
+    </div>
+    <div class="flex-container">
+        <div class="flex-cell" onclick="copyText('program1')">
+            <div class="title">DDA Line Drawing 🔺⚪</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('program2')">
+            <div class="title">Scan Fill Algorithm 🎨🖌</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('program3')">
+            <div class="title">Line Clipping ✂</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('program4')">
+            <div class="title">Transformations🔺⚪⬜</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('program5')">
+            <div class="title"> Hilbert Curve ➰</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('program6')">
+            <div class="title">Sunrise sunset 🌄</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('program7')">
+            <div class="title">Walking Man with Umbrella ☂</div>
+        </div>
+    </div>
+
+    <!-- Second group (duplicate) -->
+    <div class="flex-container">
+        <div class="flex-cell" onclick="copyText('oop1')">
+            <div class="title">Complex Number</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('oop2')">
+            <div class="title">Database</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('oop3')">
+            <div class="title">Book library/inventory</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('oop4')">
+            <div class="title">Selection Sort</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('oop5')">
+            <div class="title">Create & Read file | File handeling</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('oop6')">
+            <div class="title">STL</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('oop7')">
+            <div class="title">STL MAP</div>
+        </div>
+    </div>
+
+    <script>
+        function copyText(program) {
+            let textToCopy;
+            switch (program) {
+                case 'program1':
+                    textToCopy = String.raw`#include<iostream>
+#include <graphics.h>
+#include <conio.h>
+#include <cmath>
+using namespace std;
+
+class DDA_Line {
+public:
+    DDA_Line(int x1, int y1, int x2, int y2) {
+        ddaAlgorithm(x1, y1, x2, y2);
+    }
+
+private:
+    void ddaAlgorithm(int x1, int y1, int x2, int y2) {
+        int dx = x2 - x1;
+        int dy = y2 - y1;
+        int steps;
+
+        if (abs(dx) > abs(dy))
+            steps = abs(dx);
+        else
+            steps = abs(dy);
+
+        float xinc = dx / (float)steps;
+        float yinc = dy / (float)steps;
+        float x = x1;
+        float y = y1;
+
+        for (int i = 0; i <= steps; i++) {
+            putpixel(round(x), round(y), WHITE);
+            x += xinc;
+            y += yinc;
+        }
+    }
+};
+
+class Bresenham_Circle {
+public:
+    Bresenham_Circle(int xc, int yc, int r) {
+        circleAlgorithm(xc, yc, r);
+    }
+
+private:
+    void display(int xc, int yc, int x, int y) {
+        putpixel(xc + x, yc + y, WHITE);
+        putpixel(xc - x, yc + y, WHITE);
+        putpixel(xc + x, yc - y, WHITE);
+        putpixel(xc - x, yc - y, WHITE);
+        putpixel(xc + y, yc + x, WHITE);
+        putpixel(xc - y, yc + x, WHITE);
+        putpixel(xc + y, yc - x, WHITE);
+        putpixel(xc - y, yc - x, WHITE);
+    }
+
+    void circleAlgorithm(int xc, int yc, int r) {
+        int x = 0;
+        int y = r;
+        int d = 3 - 2 * r;
+
+        while (y >= x) {
+            display(xc, yc, x, y);
+            x++;
+            if (d > 0) {
+                y--;
+                d = d + 4 * (x - y) + 10;
+            } else {
+                d = d + 4 * x + 6;
+            }
+        }
+    }
+};
+
+int main() {
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "");
+
+    Bresenham_Circle circle1(150, 150, 57);
+    Bresenham_Circle circle2(150, 150, 28);
+
+    DDA_Line line1(100, 178, 200, 178);
+    DDA_Line line2(200, 178, 150, 93);
+    DDA_Line line3(100, 178, 150, 93);
+
+    getch();
+    closegraph();
+    return 0;
+}`;
+                    break;
+                case 'program2':
+                    textToCopy = String.raw`#include <conio.h>
+#include <iostream>
+#include <graphics.h>
+#include <stdlib.h>
+using namespace std;
+
+class point
+{
+    public:
+    int x,y;
+};
+
+class poly
+{
+    private:
+        point p[20];
+        int inter[20],x,y;
+        int v,xmin,ymin,xmax,ymax;
+    public:
+        int c;
+        void read();
+        void calcs();
+        void display();
+        void ints(float);
+        void sort(int);
+};
+
+
+void poly::read()
+{
+    int i;
+    cout<<"\n\t SCAN_FILL ALGORITHM";
+    cout<<"\n Enter the no of vertices of polygon:";
+    cin>>v;
+    if(v>2)
+    {
+        for(i=0;i<v; i++) 
+        {
+            cout<<"\nEnter the co-ordinate no.- "<<i+1<<" : ";
+            cout<<"\n\tx"<<(i+1)<<"=";
+            cin>>p[i].x;
+            cout<<"\n\ty"<<(i+1)<<"=";
+            cin>>p[i].y;
+        }
+        p[i].x=p[0].x;
+        p[i].y=p[0].y;
+        xmin=xmax=p[0].x;
+        ymin=ymax=p[0].y;
+    }
+    else
+        cout<<"\n Enter valid no. of vertices.";
+}
+
+void poly::calcs()
+{ 
+    for(int i=0;i<v;i++)
+    {
+        if(xmin>p[i].x)
+        xmin=p[i].x;
+        if(xmax<p[i].x)
+        xmax=p[i].x;
+        if(ymin>p[i].y)
+        ymin=p[i].y;
+        if(ymax<p[i].y)
+        ymax=p[i].y;
+    }
+}
+
+void poly::display()
+{
+    int ch1;
+    char ch='y';
+    float s,s2;
+    do
+    {
+        cout<<"\n\nMENU:";
+        cout<<"\n\n\t1 . Scan line Fill ";
+        cout<<"\n\n\t2 . Exit ";
+        cout<<"\n\nEnter your choice:";
+        cin>>ch1;
+        switch(ch1)
+        {
+            case 1:
+                s=ymin+0.01;
+                delay(100);
+                cleardevice();
+                while(s<=ymax)
+                {
+                    ints(s);
+                    sort(s);
+                    s++;
+                }
+                break;
+            case 2:
+                exit(0);
+        }
+
+        cout<<"Do you want to continue?(y for yes): ";
+        cin>>ch;
+    }while(ch=='y' || ch=='Y');
+}
+
+void poly::ints(float z) 
+{
+    int x1,x2,y1,y2,temp;
+    c=0;
+    for(int i=0;i<v;i++)
+    {
+        x1=p[i].x;
+        y1=p[i].y;
+        x2=p[i+1].x;
+        y2=p[i+1].y;
+        if(y2<y1)
+        {
+            temp=x1;
+            x1=x2;
+            x2=temp;
+            temp=y1;
+            y1=y2;
+            y2=temp;
+        }
+        if(z<=y2&&z>=y1)
+        {
+            if((y1-y2)==0)
+            x=x1;
+            else 
+            {
+                x=((x2-x1)*(z-y1))/(y2-y1);
+                x=x+x1;
+            }
+            if(x<=xmax && x>=xmin)
+            inter[c++]=x;
+        }
+    }
+}
+
+void poly::sort(int z) 
+{
+    int temp,j,i;
+
+        for(i=0;i<v;i++)
+        {
+            line(p[i].x,p[i].y,p[i+1].x,p[i+1].y); 
+        }
+        delay(100);
+        for(i=0; i<c;i+=2)
+        {
+            delay(100);
+            line(inter[i],z,inter[i+1],z);  
+        }
+}
+
+int main() 
+{
+    int cl;
+    initwindow(500,600);
+    cleardevice();
+    poly x;
+    x.read();
+    x.calcs();
+    cleardevice();
+    cout<<"\n\tEnter the colour u want:(0-15)->";
+    cin>>cl;
+    setcolor(cl);
+    x.display();
+    closegraph(); 
+    getch();
+    return 0;
+}`;
+                    break;
+                case 'program3':
+                    textToCopy = String.raw`#include<graphics.h>
+
+#include<conio.h>
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+void window()
+{
+	line(200,200,350,200);
+	line(350,200,350,350);
+	line(200,200,200,350);
+	line(200,350,350,350);
+}
+
+void code(char c[4],float x,float y)
+{
+	c[0]=(x<200)?'1':'0';
+	c[1]=(x>350)?'1':'0';
+	c[2]=(y<200)?'1':'0';
+	c[3]=(y>350)?'1':'0';
+}
+
+void clipping(char c[],char d[],float &x,float &y,float m)
+{
+	int flag=1,i=0;
+	for(i=0;i<4;i++)
+	{
+		if(c[i]!='0' && d[i]!='0')
+		{
+			flag=0;
+			break;
+		}
+		if(flag)
+		{
+			if(c[0]!='0')
+			{
+				y=m*(200-x)+y;
+				x=200;
+			}
+			else if(c[1]!='0')
+			{
+				y=m*(350-x)+y;
+				x=350;
+			}
+			else if(c[2]!='0')
+			{
+				x=((200-y)/m)+x;
+				y=200;
+			}
+			else if(c[3]!='0')
+			{
+				x=((350-y)/m)+x;
+				y=350;
+			}
+		}
+		if(flag==0)
+		    cout<<"Line lying outside";
+	}
+}
+
+int main()
+{
+	int gdriver=DETECT,gmode,errorcode;
+	float x1,y1,x2,y2;
+	float m;
+	char c[4],d[4],str[]="C:/TURBOC3/BGI";
+	initgraph(&gdriver,&gmode,str);
+	cout<<"Enter coordinates:";
+	cin>>x1>>y1>>x2>>y2;
+	cout<<"Before clipping:";
+	window();
+	line(x1,y1,x2,y2);
+	getch();
+    cleardevice();
+	m=float((y2-y1)/(x2-x1));
+	code(c,x1,y1);
+	code(d,x2,y2);
+	clipping(c,d,x1,y1,m);
+	clipping(d,c,x2,y2,m);
+	cout<<"After clipping";
+	window();
+	line(x1,y1,x2,y2);
+	getch();
+	closegraph();
+}`;
+                    break;
+                case 'program4':
+                    textToCopy = String.raw`#include <iostream>
+#include <graphics.h>
+#include <cmath>
+using namespace std;
+
+class Transform {
+public:
+    int m, a[20][3], c[20][3];
+    int i, j, k;
+
+    void object();
+    void accept();
+    void operator*(float b[3][3]);
+};
+
+void Transform::object() {
+    int gd, gm;
+    gd = DETECT;
+    initgraph(&gd, &gm, NULL);
+
+    line(300, 0, 300, 600);
+    line(0, 300, 600, 300);
+
+    for (i = 0; i < m - 1; i++) {
+        line(300 + a[i][0], 300 - a[i][1], 300 + a[i + 1][0], 300 - a[i + 1][1]);
+    }
+    line(300 + a[0][0], 300 - a[0][1], 300 + a[m - 1][0], 300 - a[m - 1][1]);
+
+    for (i = 0; i < m - 1; i++) {
+        line(300 + c[i][0], 300 - c[i][1], 300 + c[i + 1][0], 300 - c[i + 1][1]);
+    }
+    line(300 + c[0][0], 300 - c[0][1], 300 + c[m - 1][0], 300 - c[m - 1][1]);
+
+    int temp;
+    cout << "Press 1 to continue";
+    cin >> temp;
+    closegraph();
+}
+
+void Transform::accept() {
+    cout << "\nEnter the Number Of Edges: ";
+    cin >> m;
+    cout << "\nEnter The Coordinates (x, y for each edge):\n";
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < 2; j++) { 
+            cin >> a[i][j];
+            a[i][2] = 1; 
+        }
+    }
+}
+
+void Transform::operator*(float b[3][3]) {
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < 3; j++) {
+            c[i][j] = 0;
+            for (k = 0; k < 3; k++) {
+                c[i][j] += a[i][k] * b[k][j]; 
+            }
+        }
+    }
+}
+
+int main() {
+    int ch, tx, ty, sx, sy;
+    float deg, theta, b[3][3]; 
+    Transform t;
+
+    t.accept();
+
+    cout << "\nEnter your choice";
+    cout << "\n1. Translation"
+         << "\n2. Scaling"
+         << "\n3. Rotation";
+    cin >> ch;
+
+    switch (ch) {
+        case 1:
+            cout << "\nTRANSLATION OPERATION\n";
+            cout << "Enter values for tx and ty: ";
+            cin >> tx >> ty;
+
+            b[0][0] = 1; b[0][1] = 0; b[0][2] = 0;
+            b[1][0] = 0; b[1][1] = 1; b[1][2] = 0;
+            b[2][0] = tx; b[2][1] = ty; b[2][2] = 1;
+
+            t * b;
+            t.object();
+            break;
+
+        case 2:
+            cout << "\nSCALING OPERATION\n";
+            cout << "Enter values for sx and sy: ";
+            cin >> sx >> sy;
+
+            b[0][0] = sx; b[0][1] = 0; b[0][2] = 0;
+            b[1][0] = 0; b[1][1] = sy; b[1][2] = 0;
+            b[2][0] = 0; b[2][1] = 0; b[2][2] = 1;
+
+            t * b; 
+            t.object();
+            break;
+
+        case 3:
+            cout << "\nROTATION OPERATION\n";
+            cout << "Enter value for angle in degrees: ";
+            cin >> deg;
+
+            theta = deg * (3.14 / 180); 
+
+           
+            b[0][0] = cos(theta); b[0][1] = -sin(theta); b[0][2] = 0;
+            b[1][0] = sin(theta); b[1][1] = cos(theta); b[1][2] = 0;
+            b[2][0] = 0; b[2][1] = 0; b[2][2] = 1;
+
+            t * b; 
+            t.object();
+            break;
+
+        default:
+            cout << "\nInvalid choice";
+            break;
+    }
+
+    getch();
+    return 0;
+}`;
+                    break;
+                case 'program5':
+                    textToCopy = String.raw`#include<iostream>
+#include<graphics.h>
+#include<math.h>
+#include<cstdlib>
+using namespace std;
+
+void move(int j, int h, int & x, int & y)
+	{
+   		if (j == 1)y -= h;
+		if (j == 2)x += h;
+		if (j == 3)y += h;
+		if (j == 4)x -= h;
+   		lineto(x, y);	
+	}
+
+void hilbert(int r, int d, int l, int u, int i, int h, int & x, int & y)
+
+{
+
+    if (i > 0)
+
+    {
+        i--;
+        hilbert(d, r, u, l, i, h, x, y);
+
+        move(r, h, x, y);
+
+        hilbert(r, d, l, u, i, h, x, y);
+
+        move(d, h, x, y);
+
+        hilbert(r, d, l, u, i, h, x, y);
+
+        move(l, h, x, y);
+        hilbert(u, l, d, r, i, h, x, y);
+
+    }
+
+}
+
+int main()
+
+{
+    int n, x1, y1;
+    int x0 = 50, y0 = 150, x, y, h = 10, r = 2, d = 3, l = 4, u = 1;
+
+    cout << "Give the value of n=";
+
+    cin >> n;
+
+    x = x0;
+
+    y = y0;
+
+    int driver = DETECT, mode = 0;
+
+    initgraph( & driver, & mode, NULL);
+
+    moveto(x, y);
+
+    hilbert(r, d, l, u, n, h, x, y);
+
+    delay(10000);
+	getch();
+    closegraph();
+
+    return 0;
+
+}`;
+                    break;
+                case 'program6':
+                    textToCopy = String.raw`#include<iostream>
+#include<stdlib.h>
+
+#ifdef __APPLE__
+#include<openGL/openGL.h>
+#include<GLUT/glut.h>
+#else 
+#include<GL/glut.h>
+#endif
+
+using namespace std;
+
+float ballX = -0.8f;
+float ballY = -0.3f;
+float ballZ = -1.2f;
+float colR=3.0;
+float colG=1.5;
+float colB=1.0;
+float bgColR=0.0;
+float bgColG=0.0;
+float bgColB=0.0;
+
+static int flag=1;
+
+void drawBall(void) {
+    glColor3f(colR,colG,colB);
+    glTranslatef(ballX,ballY,ballZ);
+    glutSolidSphere (0.05, 30, 30);
+}
+
+void drawAv(void) {
+    glBegin(GL_POLYGON);
+    glColor3f(1.0,1.0,1.0);
+    glVertex3f(-0.9,-0.7,-1.0);
+    glVertex3f(-0.5,-0.1,-1.0);
+    glVertex3f(-0.2,-1.0,-1.0);
+    glVertex3f(0.5,0.0,-1.0);
+    glVertex3f(0.6,-0.2,-1.0);
+    glVertex3f(0.9,-0.7,-1.0);
+    glEnd();
+}
+
+void drawClouds(){}
+void keyPress(int key, int x, int y) {
+    if(key==GLUT_KEY_RIGHT)
+        ballX -= 0.05f;
+    if(key==GLUT_KEY_LEFT)
+        ballX  += 0.05f;
+    glutPostRedisplay();
+}
+
+void initRendering() {
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
+    glEnable(GL_NORMALIZE);
+}
+
+void handleResize(int w, int h) {
+    glViewport(0, 0, w, h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(45.0, (double)w / (double)h, 1.0, 200.0);
+}
+
+void drawScene() {
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glClearColor(bgColR,bgColG,bgColB,0.0);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    GLfloat ambientColor[] = {0.2f, 0.2f, 0.2f, 1.0f};
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
+    GLfloat lightColor0[] = {0.5f, 0.5f, 0.5f, 1.0f};
+    GLfloat lightPos0[] = {4.0f, 0.0f, 8.0f, 1.0f};
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
+    glLightfv(GL_LIGHT0, GL_POSITION, lightPos0);
+    GLfloat lightColor1[] = {0.5f, 0.2f, 0.2f, 1.0f};
+    GLfloat lightPos1[] = {-1.0f, 0.5f, 0.5f, 0.0f};
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);
+    glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
+    glPushMatrix();
+        drawBall();
+    glPopMatrix();
+    glPushMatrix();
+        drawAv();
+    glPopMatrix();
+    glPushMatrix();
+        drawClouds();
+    glPopMatrix();
+    glutSwapBuffers();
+}
+
+void update(int value) {
+    if(ballX>0.9f) {
+        ballX = -0.8f;
+        ballY = -0.3f;
+        flag=1;
+        colR=2.0;
+        colG=1.50;
+        colB=1.0;
+        bgColB=0.0;
+    }
+    if(flag) {
+        ballX += 0.001f;
+        ballY +=0.0007f;
+        colR-=0.001;
+        colB+=0.005;
+        bgColB+=0.001;
+        if(ballX>0.01) {
+            flag=0;
+        }
+    }
+    if (!flag) {
+        ballX += 0.001f;
+        ballY -=0.0007f;
+        colR+=0.001;
+        colB-=0.01;
+        bgColB-=0.001;
+        if(ballX<-0.3) {
+            flag=1;
+        }
+    }
+    glutPostRedisplay();
+    glutTimerFunc(25, update, 0);
+}
+
+int main(int argc,char** argv) {
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB|GLUT_DEPTH);
+    glutInitWindowSize(400,400);
+    glutCreateWindow("Sun");
+    initRendering();
+    glutDisplayFunc(drawScene);
+    glutFullScreen();
+    glutSpecialFunc(keyPress);
+    glutReshapeFunc(handleResize);
+    glutTimerFunc(25, update, 0);
+    glutMainLoop();
+    return(0);
+}`;
+                    break;
+                case 'program7':
+                    textToCopy = String.raw`#include<iostream>
+#include<conio.h>
+#include<graphics.h>
+#include<stdlib.h>
+#include<dos.h>
+using namespace std;
+class walkingman
+{
+int rhx,rhy;
+public:
+void draw(int,int);
+void draw(int);
+};
+void walkingman::draw(int i)
+{
+line(20,380,580,380);
+if(i%2)
+{
+line(25+i,380,35+i,340);
+line(45+i,380,35+i,340);
+line(35+i,310,25+i,330);
+delay(20);
+}
+else
+{
+line(35+i,340,35+i,310);
+line(35+i,310,40+i,330);
+
+delay(20);
+
+}
+line(35+i,340,35+i,310);
+circle(35+i,300,10);
+line(35+i,310,50+i,330);
+line(50+i,330,50+i,280);
+line(15+i,280,85+i,280);
+arc(50+i,280,0,180,35);
+arc(55+i,330,180,360,5);
+}
+void walkingman::draw(int x,int y)
+{
+int j;
+rhx=x;
+rhy=y;
+for
+(j=0;j<100;j++)
+{
+outtextxy(rand()%rhx,rand()%(rhy-50),"|");
+setcolor(WHITE);
+}
+}
+int main()
+{
+int gd=DETECT,gm;
+int rhx,rhy,j,i;
+walkingman obj;
+initgraph(&gd,&gm,"");
+for(i=0;i<500;i++)
+
+{
+
+obj.draw(i);
+rhx=getmaxx();
+rhy=getmaxy();
+obj.draw(rhx,rhy);
+delay(150);
+cleardevice();
+}
+getch();
+}`;
+                    break;
+                case "cg":
+                    textToCopy= String.raw`//Practical no 1
+#include<iostream>
+#include <graphics.h>
+#include <conio.h>
+#include <cmath>
+using namespace std;
+
+class DDA_Line {
+public:
+    DDA_Line(int x1, int y1, int x2, int y2) {
+        ddaAlgorithm(x1, y1, x2, y2);
+    }
+
+private:
+    void ddaAlgorithm(int x1, int y1, int x2, int y2) {
+        int dx = x2 - x1;
+        int dy = y2 - y1;
+        int steps;
+
+        if (abs(dx) > abs(dy))
+            steps = abs(dx);
+        else
+            steps = abs(dy);
+
+        float xinc = dx / (float)steps;
+        float yinc = dy / (float)steps;
+        float x = x1;
+        float y = y1;
+
+        for (int i = 0; i <= steps; i++) {
+            putpixel(round(x), round(y), WHITE);
+            x += xinc;
+            y += yinc;
+        }
+    }
+};
+
+class Bresenham_Circle {
+public:
+    Bresenham_Circle(int xc, int yc, int r) {
+        circleAlgorithm(xc, yc, r);
+    }
+
+private:
+    void display(int xc, int yc, int x, int y) {
+        putpixel(xc + x, yc + y, WHITE);
+        putpixel(xc - x, yc + y, WHITE);
+        putpixel(xc + x, yc - y, WHITE);
+        putpixel(xc - x, yc - y, WHITE);
+        putpixel(xc + y, yc + x, WHITE);
+        putpixel(xc - y, yc + x, WHITE);
+        putpixel(xc + y, yc - x, WHITE);
+        putpixel(xc - y, yc - x, WHITE);
+    }
+
+    void circleAlgorithm(int xc, int yc, int r) {
+        int x = 0;
+        int y = r;
+        int d = 3 - 2 * r;
+
+        while (y >= x) {
+            display(xc, yc, x, y);
+            x++;
+            if (d > 0) {
+                y--;
+                d = d + 4 * (x - y) + 10;
+            } else {
+                d = d + 4 * x + 6;
+            }
+        }
+    }
+};
+
+int main() {
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "");
+
+    Bresenham_Circle circle1(150, 150, 57);
+    Bresenham_Circle circle2(150, 150, 28);
+
+    DDA_Line line1(100, 178, 200, 178);
+    DDA_Line line2(200, 178, 150, 93);
+    DDA_Line line3(100, 178, 150, 93);
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+/* 
+Program 2
+Write C++ program to draw a concave polygon and fill it with desired color using scan fill algorithm.
+
+*/
+#include <conio.h>
+#include <iostream>
+#include <graphics.h>
+#include <stdlib.h>
+using namespace std;
+
+class point
+{
+    public:
+    int x,y;
+};
+
+class poly
+{
+    private:
+        point p[20];
+        int inter[20],x,y;
+        int v,xmin,ymin,xmax,ymax;
+    public:
+        int c;
+        void read();
+        void calcs();
+        void display();
+        void ints(float);
+        void sort(int);
+};
+
+
+void poly::read()
+{
+    int i;
+    cout<<"\n\t SCAN_FILL ALGORITHM";
+    cout<<"\n Enter the no of vertices of polygon:";
+    cin>>v;
+    if(v>2)
+    {
+        for(i=0;i<v; i++) 
+        {
+            cout<<"\nEnter the co-ordinate no.- "<<i+1<<" : ";
+            cout<<"\n\tx"<<(i+1)<<"=";
+            cin>>p[i].x;
+            cout<<"\n\ty"<<(i+1)<<"=";
+            cin>>p[i].y;
+        }
+        p[i].x=p[0].x;
+        p[i].y=p[0].y;
+        xmin=xmax=p[0].x;
+        ymin=ymax=p[0].y;
+    }
+    else
+        cout<<"\n Enter valid no. of vertices.";
+}
+
+void poly::calcs()
+{ 
+    for(int i=0;i<v;i++)
+    {
+        if(xmin>p[i].x)
+        xmin=p[i].x;
+        if(xmax<p[i].x)
+        xmax=p[i].x;
+        if(ymin>p[i].y)
+        ymin=p[i].y;
+        if(ymax<p[i].y)
+        ymax=p[i].y;
+    }
+}
+
+void poly::display()
+{
+    int ch1;
+    char ch='y';
+    float s,s2;
+    do
+    {
+        cout<<"\n\nMENU:";
+        cout<<"\n\n\t1 . Scan line Fill ";
+        cout<<"\n\n\t2 . Exit ";
+        cout<<"\n\nEnter your choice:";
+        cin>>ch1;
+        switch(ch1)
+        {
+            case 1:
+                s=ymin+0.01;
+                delay(100);
+                cleardevice();
+                while(s<=ymax)
+                {
+                    ints(s);
+                    sort(s);
+                    s++;
+                }
+                break;
+            case 2:
+                exit(0);
+        }
+
+        cout<<"Do you want to continue?(y for yes): ";
+        cin>>ch;
+    }while(ch=='y' || ch=='Y');
+}
+
+void poly::ints(float z) 
+{
+    int x1,x2,y1,y2,temp;
+    c=0;
+    for(int i=0;i<v;i++)
+    {
+        x1=p[i].x;
+        y1=p[i].y;
+        x2=p[i+1].x;
+        y2=p[i+1].y;
+        if(y2<y1)
+        {
+            temp=x1;
+            x1=x2;
+            x2=temp;
+            temp=y1;
+            y1=y2;
+            y2=temp;
+        }
+        if(z<=y2&&z>=y1)
+        {
+            if((y1-y2)==0)
+            x=x1;
+            else 
+            {
+                x=((x2-x1)*(z-y1))/(y2-y1);
+                x=x+x1;
+            }
+            if(x<=xmax && x>=xmin)
+            inter[c++]=x;
+        }
+    }
+}
+
+void poly::sort(int z) 
+{
+    int temp,j,i;
+
+        for(i=0;i<v;i++)
+        {
+            line(p[i].x,p[i].y,p[i+1].x,p[i+1].y); 
+        }
+        delay(100);
+        for(i=0; i<c;i+=2)
+        {
+            delay(100);
+            line(inter[i],z,inter[i+1],z);  
+        }
+}
+
+int main() 
+{
+    int cl;
+    initwindow(500,600);
+    cleardevice();
+    poly x;
+    x.read();
+    x.calcs();
+    cleardevice();
+    cout<<"\n\tEnter the colour u want:(0-15)->";
+    cin>>cl;
+    setcolor(cl);
+    x.display();
+    closegraph(); 
+    getch();
+    return 0;
+}
+
+
+//Practical no 3
+#include<graphics.h>
+
+#include<conio.h>
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+void window()
+{
+	line(200,200,350,200);
+	line(350,200,350,350);
+	line(200,200,200,350);
+	line(200,350,350,350);
+}
+
+void code(char c[4],float x,float y)
+{
+	c[0]=(x<200)?'1':'0';
+	c[1]=(x>350)?'1':'0';
+	c[2]=(y<200)?'1':'0';
+	c[3]=(y>350)?'1':'0';
+}
+
+void clipping(char c[],char d[],float &x,float &y,float m)
+{
+	int flag=1,i=0;
+	for(i=0;i<4;i++)
+	{
+		if(c[i]!='0' && d[i]!='0')
+		{
+			flag=0;
+			break;
+		}
+		if(flag)
+		{
+			if(c[0]!='0')
+			{
+				y=m*(200-x)+y;
+				x=200;
+			}
+			else if(c[1]!='0')
+			{
+				y=m*(350-x)+y;
+				x=350;
+			}
+			else if(c[2]!='0')
+			{
+				x=((200-y)/m)+x;
+				y=200;
+			}
+			else if(c[3]!='0')
+			{
+				x=((350-y)/m)+x;
+				y=350;
+			}
+		}
+		if(flag==0)
+		    cout<<"Line lying outside";
+	}
+}
+
+int main()
+{
+	int gdriver=DETECT,gmode,errorcode;
+	float x1,y1,x2,y2;
+	float m;
+	char c[4],d[4],str[]="C:/TURBOC3/BGI";
+	initgraph(&gdriver,&gmode,str);
+	cout<<"Enter coordinates:";
+	cin>>x1>>y1>>x2>>y2;
+	cout<<"Before clipping:";
+	window();
+	line(x1,y1,x2,y2);
+	getch();
+    cleardevice();
+	m=float((y2-y1)/(x2-x1));
+	code(c,x1,y1);
+	code(d,x2,y2);
+	clipping(c,d,x1,y1,m);
+	clipping(d,c,x2,y2,m);
+	cout<<"After clipping";
+	window();
+	line(x1,y1,x2,y2);
+	getch();
+	closegraph();
+}
+
+
+//Practical no 4
+
+#include <iostream>
+#include <graphics.h>
+#include <cmath>
+using namespace std;
+
+class Transform {
+public:
+    int m, a[20][3], c[20][3];
+    int i, j, k;
+
+    void object();
+    void accept();
+    void operator*(float b[3][3]);
+};
+
+void Transform::object() {
+    int gd, gm;
+    gd = DETECT;
+    initgraph(&gd, &gm, NULL);
+
+    line(300, 0, 300, 600);
+    line(0, 300, 600, 300);
+
+    for (i = 0; i < m - 1; i++) {
+        line(300 + a[i][0], 300 - a[i][1], 300 + a[i + 1][0], 300 - a[i + 1][1]);
+    }
+    line(300 + a[0][0], 300 - a[0][1], 300 + a[m - 1][0], 300 - a[m - 1][1]);
+
+    for (i = 0; i < m - 1; i++) {
+        line(300 + c[i][0], 300 - c[i][1], 300 + c[i + 1][0], 300 - c[i + 1][1]);
+    }
+    line(300 + c[0][0], 300 - c[0][1], 300 + c[m - 1][0], 300 - c[m - 1][1]);
+
+    int temp;
+    cout << "Press 1 to continue";
+    cin >> temp;
+    closegraph();
+}
+
+void Transform::accept() {
+    cout << "\nEnter the Number Of Edges: ";
+    cin >> m;
+    cout << "\nEnter The Coordinates (x, y for each edge):\n";
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < 2; j++) { 
+            cin >> a[i][j];
+            a[i][2] = 1; 
+        }
+    }
+}
+
+void Transform::operator*(float b[3][3]) {
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < 3; j++) {
+            c[i][j] = 0;
+            for (k = 0; k < 3; k++) {
+                c[i][j] += a[i][k] * b[k][j]; 
+            }
+        }
+    }
+}
+
+int main() {
+    int ch, tx, ty, sx, sy;
+    float deg, theta, b[3][3]; 
+    Transform t;
+
+    t.accept();
+
+    cout << "\nEnter your choice";
+    cout << "\n1. Translation"
+         << "\n2. Scaling"
+         << "\n3. Rotation";
+    cin >> ch;
+
+    switch (ch) {
+        case 1:
+            cout << "\nTRANSLATION OPERATION\n";
+            cout << "Enter values for tx and ty: ";
+            cin >> tx >> ty;
+
+            b[0][0] = 1; b[0][1] = 0; b[0][2] = 0;
+            b[1][0] = 0; b[1][1] = 1; b[1][2] = 0;
+            b[2][0] = tx; b[2][1] = ty; b[2][2] = 1;
+
+            t * b;
+            t.object();
+            break;
+
+        case 2:
+            cout << "\nSCALING OPERATION\n";
+            cout << "Enter values for sx and sy: ";
+            cin >> sx >> sy;
+
+            b[0][0] = sx; b[0][1] = 0; b[0][2] = 0;
+            b[1][0] = 0; b[1][1] = sy; b[1][2] = 0;
+            b[2][0] = 0; b[2][1] = 0; b[2][2] = 1;
+
+            t * b; 
+            t.object();
+            break;
+
+        case 3:
+            cout << "\nROTATION OPERATION\n";
+            cout << "Enter value for angle in degrees: ";
+            cin >> deg;
+
+            theta = deg * (3.14 / 180); 
+
+           
+            b[0][0] = cos(theta); b[0][1] = -sin(theta); b[0][2] = 0;
+            b[1][0] = sin(theta); b[1][1] = cos(theta); b[1][2] = 0;
+            b[2][0] = 0; b[2][1] = 0; b[2][2] = 1;
+
+            t * b; 
+            t.object();
+            break;
+
+        default:
+            cout << "\nInvalid choice";
+            break;
+    }
+
+    getch();
+    return 0;
+}
+
+//Practical No 5
+#include<iostream>
+#include<graphics.h>
+#include<math.h>
+#include<cstdlib>
+using namespace std;
+
+void move(int j, int h, int & x, int & y)
+	{
+   		if (j == 1)y -= h;
+		if (j == 2)x += h;
+		if (j == 3)y += h;
+		if (j == 4)x -= h;
+   		lineto(x, y);	
+	}
+
+void hilbert(int r, int d, int l, int u, int i, int h, int & x, int & y)
+
+{
+
+    if (i > 0)
+
+    {
+        i--;
+        hilbert(d, r, u, l, i, h, x, y);
+
+        move(r, h, x, y);
+
+        hilbert(r, d, l, u, i, h, x, y);
+
+        move(d, h, x, y);
+
+        hilbert(r, d, l, u, i, h, x, y);
+
+        move(l, h, x, y);
+        hilbert(u, l, d, r, i, h, x, y);
+
+    }
+
+}
+
+int main()
+
+{
+    int n, x1, y1;
+    int x0 = 50, y0 = 150, x, y, h = 10, r = 2, d = 3, l = 4, u = 1;
+
+    cout << "Give the value of n=";
+
+    cin >> n;
+
+    x = x0;
+
+    y = y0;
+
+    int driver = DETECT, mode = 0;
+
+    initgraph( & driver, & mode, NULL);
+
+    moveto(x, y);
+
+    hilbert(r, d, l, u, n, h, x, y);
+
+    delay(10000);
+	getch();
+    closegraph();
+
+    return 0;
+
+}
+
+
+// Program 6
+#include<iostream>
+#include<stdlib.h>
+
+#ifdef __APPLE__
+#include<openGL/openGL.h>
+#include<GLUT/glut.h>
+#else 
+#include<GL/glut.h>
+#endif
+
+using namespace std;
+
+float ballX = -0.8f;
+float ballY = -0.3f;
+float ballZ = -1.2f;
+float colR=3.0;
+float colG=1.5;
+float colB=1.0;
+float bgColR=0.0;
+float bgColG=0.0;
+float bgColB=0.0;
+
+static int flag=1;
+
+void drawBall(void) {
+    glColor3f(colR,colG,colB);
+    glTranslatef(ballX,ballY,ballZ);
+    glutSolidSphere (0.05, 30, 30);
+}
+
+void drawAv(void) {
+    glBegin(GL_POLYGON);
+    glColor3f(1.0,1.0,1.0);
+    glVertex3f(-0.9,-0.7,-1.0);
+    glVertex3f(-0.5,-0.1,-1.0);
+    glVertex3f(-0.2,-1.0,-1.0);
+    glVertex3f(0.5,0.0,-1.0);
+    glVertex3f(0.6,-0.2,-1.0);
+    glVertex3f(0.9,-0.7,-1.0);
+    glEnd();
+}
+
+void drawClouds(){}
+void keyPress(int key, int x, int y) {
+    if(key==GLUT_KEY_RIGHT)
+        ballX -= 0.05f;
+    if(key==GLUT_KEY_LEFT)
+        ballX  += 0.05f;
+    glutPostRedisplay();
+}
+
+void initRendering() {
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
+    glEnable(GL_NORMALIZE);
+}
+
+void handleResize(int w, int h) {
+    glViewport(0, 0, w, h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(45.0, (double)w / (double)h, 1.0, 200.0);
+}
+
+void drawScene() {
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glClearColor(bgColR,bgColG,bgColB,0.0);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    GLfloat ambientColor[] = {0.2f, 0.2f, 0.2f, 1.0f};
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
+    GLfloat lightColor0[] = {0.5f, 0.5f, 0.5f, 1.0f};
+    GLfloat lightPos0[] = {4.0f, 0.0f, 8.0f, 1.0f};
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
+    glLightfv(GL_LIGHT0, GL_POSITION, lightPos0);
+    GLfloat lightColor1[] = {0.5f, 0.2f, 0.2f, 1.0f};
+    GLfloat lightPos1[] = {-1.0f, 0.5f, 0.5f, 0.0f};
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);
+    glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
+    glPushMatrix();
+        drawBall();
+    glPopMatrix();
+    glPushMatrix();
+        drawAv();
+    glPopMatrix();
+    glPushMatrix();
+        drawClouds();
+    glPopMatrix();
+    glutSwapBuffers();
+}
+
+void update(int value) {
+    if(ballX>0.9f) {
+        ballX = -0.8f;
+        ballY = -0.3f;
+        flag=1;
+        colR=2.0;
+        colG=1.50;
+        colB=1.0;
+        bgColB=0.0;
+    }
+    if(flag) {
+        ballX += 0.001f;
+        ballY +=0.0007f;
+        colR-=0.001;
+        colB+=0.005;
+        bgColB+=0.001;
+        if(ballX>0.01) {
+            flag=0;
+        }
+    }
+    if (!flag) {
+        ballX += 0.001f;
+        ballY -=0.0007f;
+        colR+=0.001;
+        colB-=0.01;
+        bgColB-=0.001;
+        if(ballX<-0.3) {
+            flag=1;
+        }
+    }
+    glutPostRedisplay();
+    glutTimerFunc(25, update, 0);
+}
+
+int main(int argc,char** argv) {
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB|GLUT_DEPTH);
+    glutInitWindowSize(400,400);
+    glutCreateWindow("Sun");
+    initRendering();
+    glutDisplayFunc(drawScene);
+    glutFullScreen();
+    glutSpecialFunc(keyPress);
+    glutReshapeFunc(handleResize);
+    glutTimerFunc(25, update, 0);
+    glutMainLoop();
+    return(0);
+}
+
+//Program 7 Umbrella
+/*
+Write C++ program to draw man walking in the rain with an umbrella. Apply the concept of 
+
+polymorphism.
+*/
+#include<iostream>
+#include<conio.h>
+#include<graphics.h>
+#include<stdlib.h>
+#include<dos.h>
+using namespace std;
+class walkingman
+{
+int rhx,rhy;
+public:
+void draw(int,int);
+void draw(int);
+};
+void walkingman::draw(int i)
+{
+line(20,380,580,380);
+if(i%2)
+{
+line(25+i,380,35+i,340);
+line(45+i,380,35+i,340);
+line(35+i,310,25+i,330);
+delay(20);
+}
+else
+{
+line(35+i,340,35+i,310);
+line(35+i,310,40+i,330);
+
+delay(20);
+
+}
+line(35+i,340,35+i,310);
+circle(35+i,300,10);
+line(35+i,310,50+i,330);
+line(50+i,330,50+i,280);
+line(15+i,280,85+i,280);
+arc(50+i,280,0,180,35);
+arc(55+i,330,180,360,5);
+}
+void walkingman::draw(int x,int y)
+{
+int j;
+rhx=x;
+rhy=y;
+for
+(j=0;j<100;j++)
+{
+outtextxy(rand()%rhx,rand()%(rhy-50),"|");
+setcolor(WHITE);
+}
+}
+int main()
+{
+int gd=DETECT,gm;
+int rhx,rhy,j,i;
+walkingman obj;
+initgraph(&gd,&gm,"");
+for(i=0;i<500;i++)
+
+{
+
+obj.draw(i);
+rhx=getmaxx();
+rhy=getmaxy();
+obj.draw(rhx,rhy);
+delay(150);
+cleardevice();
+}
+getch();
+}`;
+                    break;
+                case "oop1":
+                    textToCopy= String.raw`# include<iostream>
+using namespace std;
+class Complex                       //decaring Class Complex
+ {
+ double real;       
+ double img;
+ public: 
+ Complex();            // Default Constructor
+ friend istream & operator >> (istream &, Complex &); // Input 
+ friend ostream & operator << (ostream &, const Complex &); // Output
+ Complex operator + (Complex); // Addition
+ Complex operator * (Complex); // Multiplication
+ };
+ Complex::Complex()                 // Default Constructor 
+ {
+ real = 0;
+ img = 0;
+ }
+ istream & operator >> (istream &, Complex & i)
+ {
+ cin >> i.real >> i.img;
+ return cin;
+ }
+ ostream & operator << (ostream &, const Complex & d)
+ {
+ cout << d.real << " + " << d.img << "i" << endl;
+ return cout;
+ }
+ Complex Complex::operator + (Complex c1)   // Overloading + operator
+ {
+ Complex temp;
+ temp.real = real + c1.real;
+ temp.img = img + c1.img;
+ return temp;
+ }
+ Complex Complex::operator * (Complex c2)   // Overloading * Operator
+ {
+ Complex tmp;
+ tmp.real = real * c2.real - img * c2.img;
+ tmp.img = real * c2.img + img * c2.real;
+ return tmp;
+ }
+ int main()
+ {
+ Complex C1, C2, C3, C4;
+ int flag = 1;
+ char b;
+ while (flag == 1)
+ {
+ cout << "Enter Real and Imaginary part of the Complex Number 1 : \n";
+ cin >> C1;
+ cout << "Enter Real and Imaginary part of the Complex Number 2 : \n";
+ cin >> C2;
+ int f = 1;
+ while (f == 1)
+ {
+ cout << "Complex Number 1 : " << C1 << endl;
+ cout << "Complex Number 2 : " << C2 << endl;
+ cout << "**********MENU**********" << endl;
+ cout << "1. Addition of Complex Numbers" << endl;
+ cout << "2. Multiplication of Complex Numbers" << endl;
+ cout << "3. Exit\n";
+ int a;
+ cout << "Enter your choice from above MENU (1 to 3) : ";
+ cin >> a;
+ if (a == 1)
+ {
+ C3 = C1+C2;
+ cout << "Addition : " << C3 << endl;
+ cout << "Do you wan to perform another operation (y/n) : \n";
+ cin >> b;
+ if (b == 'y' || b == 'Y')
+ {
+ f=1;
+ }
+ else
+ {
+ cout << "Thanks for using this program!!\n";
+ flag=0;
+ f=0;
+ }
+ }
+ else if (a == 2)
+ {
+ C4 = C1 * C2;
+ cout << "Multiplication : " << C4 << endl;
+ cout << "Do you wan to perform another operation (y/n) : \n";
+ cin >> b;
+ if (b == 'y' || b == 'Y')
+ {
+ f=1;
+ }
+ else
+ {
+ cout << "Thanks for using this program!!\n";
+ flag=0;
+ f=0;
+ }
+ }
+ else
+ {
+ cout << "Thanks for using this program!!\n";
+ flag=0;
+ f=0;
+ }
+ }
+ }
+ return 0;
+ }`;
+                    break;
+                case "oop2":
+                    textToCopy= String.raw`#include<iostream>
+#include<string.h>
+using namespace std;
+
+class StudData;
+
+class Student{
+    string name;
+    int roll_no;
+    string cls;
+    char* division;
+    string dob;
+    char* bloodgroup;
+    static int count;
+
+    public:
+
+    Student()          // Default Constructor
+    {
+        name="";
+        roll_no=0;
+        cls="";
+        division=new char;
+        dob="dd/mm/yyyy";
+        bloodgroup=new char[4];
+    }
+
+    ~Student()
+    {
+        delete division;
+        delete[] bloodgroup;
+    }
+
+    static int getCount()
+    {
+        return count;
+    }
+
+    void getData(StudData*);
+    void dispData(StudData*);
+};
+
+class StudData{
+    string caddress;
+    long int* telno;
+    long int* dlno;
+    friend class Student;
+
+    public:
+
+    StudData()
+    {
+        caddress="";
+        telno=new long;
+        dlno=new long;
+    }
+    
+    ~StudData()
+    {
+        delete telno;
+        delete dlno;
+    }
+
+    void getStudData()
+    {
+        cout<<"Enter Contact Address : ";
+        cin.get();
+        getline(cin,caddress);
+        cout<<"Enter Telephone Number : ";
+        cin>>*telno;
+        cout<<"Enter Driving License Number : ";
+        cin>>*dlno;
+    }
+
+    void dispStudData()
+    {
+        cout<<"Contact Address : "<<caddress<<endl;
+        cout<<"Telephone Number : "<<*telno<<endl;
+        cout<<"Driving License Number : "<<*dlno<<endl;
+    }
+};
+
+inline void Student::getData(StudData* st)
+{
+    cout<<"Enter Student Name : ";
+    getline(cin,name);
+    cout<<"Enter Roll Number : ";
+    cin>>roll_no;
+    cout<<"Enter Class : ";
+    cin.get();
+    getline(cin,cls);
+    cout<<"Enter Division : ";
+    cin>>division;
+    cout<<"Enter Date of Birth : ";
+    cin.get();
+    getline(cin,dob);
+    cout<<"Enter Blood Group : ";
+    cin>>bloodgroup;
+    st->getStudData();
+    count++;
+}
+
+inline void Student::dispData(StudData* st1)
+{
+    cout<<"Student Name : "<<name<<endl;
+    cout<<"Roll Number : "<<roll_no<<endl;
+    cout<<"Class : "<<cls<<endl;
+    cout<<"Division : "<<division<<endl;
+    cout<<"Date of Birth : "<<dob<<endl;
+    cout<<"Blood Group : "<<bloodgroup<<endl;
+    st1->dispStudData();
+}
+
+int Student::count;
+
+int main()
+{
+    Student* stud1[100];
+    StudData* stud2[100];
+    int n=0;
+    char ch;
+
+    do
+    {
+        stud1[n]=new Student;
+        stud2[n]=new StudData;
+        stud1[n]->getData(stud2[n]);
+        n++;
+        cout<<"Do you want to add another student (y/n) : ";
+        cin>>ch;
+        cin.get();
+    } while (ch=='y' || ch=='Y');
+
+    for(int i=0;i<n;i++)
+    {
+        cout<<"---------------------------------------------------------------"<<endl;
+        stud1[i]->dispData(stud2[i]);
+    }
+
+    cout<<"---------------------------------------------------------------"<<endl;
+    cout<<"Total Students : "<<Student::getCount();
+    cout<<endl<<"---------------------------------------------------------------"<<endl;
+
+    for(int i=0;i<n;i++)
+    {
+        delete stud1[i];
+        delete stud2[i];
+    }
+    
+
+    return 0;
+}`;
+                    break;
+                case "oop3":
+                    textToCopy= String.raw`
+
+#include<iostream>
+
+#include<string.h>
+
+#include<stdlib.h>
+
+
+
+using namespace std;
+
+class book
+
+{
+
+
+
+ char author[20]; 
+
+ char title[20];
+
+ char publisher[20];
+
+ double price;
+
+ int stock;
+
+   public:
+
+     book();    
+
+   void insertdata();
+
+   void display();
+
+   int search(char[],char[]);
+
+   void nocopies(int);     
+
+};
+
+  book::book()
+
+  {
+
+    char *author=new char[50];
+
+    char * title=new char[50];
+
+    char *publisher=new char[50];
+
+    price=0;
+
+    stock=0;
+
+   }
+
+void book::insertdata()
+
+         {
+
+  cout<<"\n Enter the name of Book:";
+
+  cin>>title;
+
+  cout<<"\n Enter The Name Of Author:";
+
+  cin>>author;
+
+  cout<<"\n Enter The name of Publisher:";
+
+  cin>>publisher;
+
+  cout<<"\n Enter the Price of book:";
+
+  cin>>price;
+
+  cout<<"\n Enter Stock of book:";
+
+  cin>>stock;
+
+ }
+
+
+
+
+
+  void book::display()
+
+ {
+
+ cout<<"\n "<<title<<"\t\t "<<author<<"\t\t  "<<publisher<<" \t\t\t "<<price<<"\t "<<stock;
+
+        }
+
+  int book::search(char t[],char a[])
+
+  {
+
+      if(strcmp(title,t)&&(strcmp(author,a)))
+
+ {
+
+ return 0;
+
+ }
+
+ else
+
+ {
+
+ return 1;
+
+ }
+
+  }
+
+
+
+ void book::nocopies(int num)
+
+{
+
+if(stock>=num)
+
+{
+
+cout<<"\n Title is avilable";
+
+cout<<"\n Cost of"<<num<<"Books is Rs."<<(price*num);
+
+}
+
+else
+
+{
+
+cout<<"\n Required copies not in stock";
+
+}
+
+}
+
+int main()
+
+{
+
+ int ch,n,i,flag=0,copies,key=0;
+
+          book b[100];
+
+          char bname[50];
+
+          char key_title[50],key_author[50];
+
+   do
+
+    {
+
+ cout<<"\n************Book Store*******************";
+
+ cout<<"\n 1.Insert Details of book \n 2.Display \n 3.search \n 4.exit";
+
+ cout<<"\n Enter Your Choice:";
+
+ cin>>ch;
+
+ switch(ch)
+
+  {
+
+      case 1:
+
+                    cout<<"\n How many books data u want to enter";
+
+                    cin>>n;
+
+                    for(i=0;i<n;i++)
+
+                      {
+
+                       b[i].insertdata();
+
+   }
+
+                     break;
+
+     case 2:
+
+                       cout<<"\n"<<"TITLE"<<"\t \t "<<"AUTHOR"<<"\t\t"<<"PUBLISHER"<<"\t\t"<<"PRICE"<<"\t "<<"STOCK";
+
+                        for(i=0;i<n;i++)
+
+    {
+
+                        cout<<"\n";
+
+   
+
+         b[i].display();   
+
+     }
+
+   
+
+                        break;
+
+                    
+
+   case 3:
+
+                          cout<<"\n Enter title of required book";
+
+                           cin>>key_title;
+
+                           cout<<"\n Enter author of required book";
+
+                            cin>>key_author;
+
+                             
+
+                            for(i=0;i<n;i++)
+
+                          {
+
+                              if(b[i].search(key_title,key_author))
+
+                               {
+
+                                  flag=1;
+
+ cout<<"\n"<<"TITLE"<<"\t \t "<<"AUTHOR"<<"\t\t"<<"PUBLISHER"<<"\t\t"<<"PRICE"<<"\t "<<"STOCK";
+
+                                  b[i].display();                        
+
+    //break;
+
+    key=i;
+
+            }
+
+    }
+
+   if(flag==1)                          
+
+    cout<<"\n Book is available";
+
+   else
+
+ {
+
+     cout<<"\n book is Not available";
+
+        break;
+
+ }        
+
+              if(flag==1)
+
+                      {
+
+                      cout<<"\n Please enter the required number of copies of the book";
+
+                       cin>>copies;
+
+                      b[key].nocopies(copies);
+
+                     }
+
+                   
+
+                     break;
+
+                case 4: exit(EXIT_SUCCESS);
+
+   break;
+
+  default :
+
+                    cout<<"\n Wrong Choice";
+
+                       break;
+
+ }   
+
+   }while(ch!=5);
+
+ return 0;
+
+}
+
+`;
+                    break;
+                    case "oop4":
+                    textToCopy= String.raw`
+#include<iostream>
+using namespace std;
+int n;
+#define size 10
+template<class T>
+void sel(T A[size])
+{
+    int i,j,min;
+    T temp;
+    for(i=0;i<n-1;i++)
+    {
+        min=i;
+        for(j=i+1;j<n;j++)
+        {
+            if(A[j]<A[min])
+            min=j;
+        }
+        temp=A[i];
+        A[i]=A[min];
+        A[min]=temp;
+    }
+    cout<<"\nSorted array:";
+    for(i=0;i<n;i++)
+    {
+        cout<<" "<<A[i];
+    }
+}
+
+int main()
+{
+    int A[size];
+    float B[size];
+    int i;
+    int ch;
+    do
+	{
+		cout<<"\n* * * * * SELECTION SORT SYSTEM * * * * *";
+		cout<<"\n--------------------MENU-----------------------";
+		cout<<"\n1. Integer Values";
+		cout<<"\n2. Float Values";
+		cout<<"\n3. Exit";
+		cout<<"\n\nEnter your choice : ";
+		cin>>ch;
+		
+		switch(ch)
+		{
+			case 1:
+				cout<<"\nEnter total no of int elements:";
+                cin>>n;
+                cout<<"\nEnter int elements:";
+                for(i=0;i<n;i++)
+                {
+                    cin>>A[i];
+                }
+                sel(A);
+				break;
+				
+			case 2:
+				cout<<"\nEnter total no of float elements:";
+                cin>>n;
+                cout<<"\nEnter float elements:";
+                for(i=0;i<n;i++)
+                {
+                    cin>>B[i];
+                }
+                sel(B);
+				break;
+				
+			case 3:
+				exit(0);
+		}
+	}while(ch!=3);
+   
+   
+    
+   return 0;
+    
+}`;
+                    break;
+                    case "oop5":
+                    textToCopy= String.raw`
+#include<iostream>
+#include<fstream>
+using namespace std;
+class Employee              // declaring class employee
+{
+ string Name;
+ int ID;
+ double salary;
+ public:
+ void accept()
+ {
+ cout<<"\n Name : ";
+ cin.ignore();
+getline(cin,Name);
+ cout<<"\n Id : ";
+ cin>>ID;
+ cout<<"\n Salary : ";
+ cin>>salary;
+ }
+ void display()
+ {
+ cout<<"\n Name : "<<Name;
+ cout<<"\n Id : "<<ID;
+ cout<<"\n Salary : "<<salary<<endl;
+ }
+};
+
+int main()
+{
+ Employee o[5];
+ fstream f;
+ int i,n;
+
+ f.open("demo.txt",ios::out);
+ cout<<"\n Enter the number of employees you want to store : ";
+ cin>>n;
+ for(i=0;i<n;i++)
+ {
+ cout<<"\n Enter information of Employee "<<i+1<<"\n";
+ o[i].accept();
+ f.write((char*)&o[i],sizeof o[i]);
+ }
+
+ f.close();
+
+ f.open("demo.txt",ios::in);
+ cout<<"\n Information of Employees is as follows : \n";
+ for(i=0;i<n;i++)
+ {
+ cout<<"\nEmployee "<<i+1<<"\n";
+ f.write((char*)&o[i],sizeof o[i]);
+ o[i].display();
+ }
+ f.close();
+ 
+ return 0;
+}
+
+`;
+                    break;
+                    case "oop6":
+                    textToCopy= String.raw`
+#include <iostream> //standard input output stream header file
+#include <algorithm> //The STL algorithms are generic because they can operate on a variety of data structures
+#include <vector> //The header file for the STL vector library is vector.
+using namespace std;
+class Item // creating class Item
+{
+ public:
+ char name[10];
+ int quantity;
+ int cost;
+ int code;
+ bool operator ==(const Item & i1) //Boolean operators allow you to create more complex conditional statements
+ {
+ if(code==i1.code) //operator will return 1 if the comparison is true, or 0 if the comparison is false
+ return 1;
+ return 0;
+ }
+ bool operator<(const Item& i1)
+ {
+ if(code<i1.code) //operator will return 1 if the comparison is true, or 0 if the comparison is false
+ return 1;
+ return 0;
+ }
+};
+vector<Item> o1;
+void print(Item &i1);
+void display();
+void insert();
+void search();
+void dlt();
+bool compare(const Item &i1, const Item &i2)
+{
+ //if (i1.name != i2.name) return i1.cost < i2.cost;
+ return i1.cost < i2.cost;
+}
+int main()
+{
+ int ch;
+ do
+ {
+ cout<<"\n* * * * * Menu * * * * *";
+ cout<<"\n1.Insert";
+ cout<<"\n2.Display";
+ cout<<"\n3.Search";
+ cout<<"\n4.Sort";
+ cout<<"\n5.Delete";
+ cout<<"\n6.Exit";
+ cout<<"\nEnter your choice : ";
+ cin>>ch;
+
+ switch(ch)
+ {
+ case 1:
+ insert();
+ break;
+
+ case 2:
+ display();
+ break;
+
+ case 3:
+ search();
+ break;
+
+ case 4:
+ sort(o1.begin(),o1.end(),compare);
+ cout<<"\n\n Sorted on Cost : ";
+ display();
+ break;
+
+ case 5:
+ dlt();
+ break;
+
+ case 6:
+ exit(0);
+ }
+ 
+ }while(ch!=7);
+ return 0;
+}
+void insert()
+{
+ Item i1;
+ cout<<"\nEnter Item Name : ";
+ cin>>i1.name;
+ cout<<"\nEnter Item Quantity : ";
+ cin>>i1.quantity;
+ cout<<"\nEnter Item Cost : ";
+ cin>>i1.cost;
+ cout<<"\nEnter Item Code : ";
+ cin>>i1.code;
+ o1.push_back(i1);
+}
+void display()
+{
+ for_each(o1.begin(),o1.end(),print);
+}
+void print(Item &i1)
+{
+ cout<<"\n";
+ cout<<"\nItem Name : "<<i1.name;
+ cout<<"\nItem Quantity : "<<i1.quantity;
+ cout<<"\nItem Cost : "<<i1.cost;
+ cout<<"\nItem Code : "<<i1.code;
+ cout<<"\n\n";
+}
+void search()
+{
+ vector<Item>::iterator p;
+ Item i1;
+ cout<<"\nEnter Item Code to search : ";
+ cin>>i1.code;
+ p=find(o1.begin(),o1.end(),i1);
+ if(p==o1.end())
+ {
+ cout<<"\nNot found!!!";
+ }
+ else
+ {
+ cout<<"\nFound!!!";
+ }
+}
+void dlt()
+{
+ vector<Item>::iterator p;
+ Item i1;
+ cout<<"\nEnter Item Code to delete : ";
+ cin>>i1.code;
+ p=find(o1.begin(),o1.end(),i1);
+ if(p==o1.end())
+ {
+ cout<<"\nNot found!!!";
+ }
+ else
+ {
+ o1.erase(p);
+ cout<<"\nDeleted!!!";
+ }
+}`;
+                    break;
+                    case "oop7":
+                    textToCopy= String.raw`
+#include <iostream>
+#include <map>
+#include <string>
+#include <utility>
+
+using namespace std;
+
+int main()
+{
+	typedef map<string,int> mapType;
+	mapType populationMap;
+	
+	populationMap.insert(pair<string, float>("Maharashtra", 125));
+	populationMap.insert(pair<string, float>("Uttar Pradesh", 225));
+	populationMap.insert(mapType::value_type("Bihar", 120)); 
+	populationMap.insert(mapType::value_type("West Bengal", 100)); 
+	populationMap.insert(make_pair("Madhya Pradesh", 90)); 
+	populationMap.insert(make_pair("Tamil Nadu", 80)); 
+	populationMap.insert(make_pair("Rajasthan", 78));
+	populationMap.insert(make_pair("Andhra Pradesh", 53));
+	populationMap.insert(make_pair("Odisha", 47));
+	populationMap.insert(make_pair("Kerala", 38));
+	populationMap.insert(make_pair("Telangana", 37));
+	populationMap.insert(make_pair("Assam", 35));
+	populationMap.insert(make_pair("Jharkhand", 38));
+	populationMap.insert(make_pair("Karnataka", 68));
+	populationMap.insert(make_pair("Gujarat", 70));
+	populationMap.insert(make_pair("Punjab", 31));
+	populationMap.insert(make_pair("Chhattisgarh", 30));
+	populationMap.insert(make_pair("Haryana", 29));
+	populationMap.insert(make_pair("UT Delhi", 19));
+	populationMap.insert(make_pair("UT Jammu and Kashmir", 14));
+	populationMap.insert(make_pair("Uttarakhand", 12));
+	populationMap.insert(make_pair("Himachal Pradesh", 8));
+	populationMap.insert(make_pair("Tripura", 04));
+	populationMap.insert(make_pair("Meghalaya", 4));
+	populationMap.insert(make_pair("Manipur[", 3));
+	populationMap.insert(make_pair("Nagaland", 2));
+	populationMap.insert(make_pair("Goa", 2));
+	populationMap.insert(make_pair("Arunachal Pradesh", 2));
+	populationMap.insert(make_pair("UT Puducherry", 2));
+	populationMap.insert(make_pair("Mizoram", 1));
+	populationMap.insert(make_pair("UT Chandigarh", 1));
+	populationMap.insert(make_pair("Sikkim", 1));
+	populationMap.insert(make_pair("UT Dadra and Nagar Haveli and Daman and Diu", 1));
+	populationMap.insert(make_pair("UT Andaman and Nicobar Islands", 1));
+	populationMap.insert(make_pair("UT Lakshadweep", 0.0003));
+	populationMap.insert(make_pair("UT Ladakh", 0.00006));
+	
+	mapType::iterator iter = --populationMap.end();
+	populationMap.erase(iter);
+	 
+	cout << "Total state and UT of India with Size of populationMap: " << populationMap.size() << '\n';
+	
+	for (iter = populationMap.begin(); iter != populationMap.end(); ++iter) 
+	{
+	 cout << iter->first <<":" << iter->second << " million\n";
+	}
+	
+	char c;
+	do
+	{
+		string state;
+		cout<<"\nEnter that state you want to know the population of: ";
+		cin>>state;
+		iter = populationMap.find(state);
+		if( iter != populationMap.end() ) 
+		    cout << state <<"'s populations is "
+		        << iter->second << " million\n";
+		else
+		    cout << "State is not in populationMap" << '\n';
+		    
+		cout<<"Do you wish to continue?(y/n):";
+		cin>>c;
+	}while(c=='y'||c=='Y');
+	 
+	populationMap.clear();
+	
+	return 0;
+}`;
+                    break;
+                    case "oop":
+                    textToCopy= String.raw`//Program 1
+
+/* 
+Implement a class Complex which represents the Complex Number data type. Implement the following
+1.	Constructor (including a default constructor which creates the complex number 0+0i).
+2.	Overload operator+ to add two complex numbers.
+3.	Overload operator* to multiply two complex numbers.
+4.	Overload operators << and >> to print and read Complex Numbers
+*/
+
+
+# include<iostream>
+using namespace std;
+class Complex                       //decaring Class Complex
+ {
+ double real;       
+ double img;
+ public: 
+ Complex();            // Default Constructor
+ friend istream & operator >> (istream &, Complex &); // Input 
+ friend ostream & operator << (ostream &, const Complex &); // Output
+ Complex operator + (Complex); // Addition
+ Complex operator * (Complex); // Multiplication
+ };
+ Complex::Complex()                 // Default Constructor 
+ {
+ real = 0;
+ img = 0;
+ }
+ istream & operator >> (istream &, Complex & i)
+ {
+ cin >> i.real >> i.img;
+ return cin;
+ }
+ ostream & operator << (ostream &, const Complex & d)
+ {
+ cout << d.real << " + " << d.img << "i" << endl;
+ return cout;
+ }
+ Complex Complex::operator + (Complex c1)   // Overloading + operator
+ {
+ Complex temp;
+ temp.real = real + c1.real;
+ temp.img = img + c1.img;
+ return temp;
+ }
+ Complex Complex::operator * (Complex c2)   // Overloading * Operator
+ {
+ Complex tmp;
+ tmp.real = real * c2.real - img * c2.img;
+ tmp.img = real * c2.img + img * c2.real;
+ return tmp;
+ }
+ int main()
+ {
+ Complex C1, C2, C3, C4;
+ int flag = 1;
+ char b;
+ while (flag == 1)
+ {
+ cout << "Enter Real and Imaginary part of the Complex Number 1 : \n";
+ cin >> C1;
+ cout << "Enter Real and Imaginary part of the Complex Number 2 : \n";
+ cin >> C2;
+ int f = 1;
+ while (f == 1)
+ {
+ cout << "Complex Number 1 : " << C1 << endl;
+ cout << "Complex Number 2 : " << C2 << endl;
+ cout << "**********MENU**********" << endl;
+ cout << "1. Addition of Complex Numbers" << endl;
+ cout << "2. Multiplication of Complex Numbers" << endl;
+ cout << "3. Exit\n";
+ int a;
+ cout << "Enter your choice from above MENU (1 to 3) : ";
+ cin >> a;
+ if (a == 1)
+ {
+ C3 = C1+C2;
+ cout << "Addition : " << C3 << endl;
+ cout << "Do you wan to perform another operation (y/n) : \n";
+ cin >> b;
+ if (b == 'y' || b == 'Y')
+ {
+ f=1;
+ }
+ else
+ {
+ cout << "Thanks for using this program!!\n";
+ flag=0;
+ f=0;
+ }
+ }
+ else if (a == 2)
+ {
+ C4 = C1 * C2;
+ cout << "Multiplication : " << C4 << endl;
+ cout << "Do you wan to perform another operation (y/n) : \n";
+ cin >> b;
+ if (b == 'y' || b == 'Y')
+ {
+ f=1;
+ }
+ else
+ {
+ cout << "Thanks for using this program!!\n";
+ flag=0;
+ f=0;
+ }
+ }
+ else
+ {
+ cout << "Thanks for using this program!!\n";
+ flag=0;
+ f=0;
+ }
+ }
+ }
+ return 0;
+ }
+ 
+ 
+ // Program 2
+ /*
+Experiment Number 2 : Develop a program in C++ to create a database of
+student’s information system
+containing the following information: Name, Roll number, Class, Division,
+Date of Birth, Blood group,
+Contactaddress, Telephone number, Driving license no. and other. Construct
+the database with
+suitable member functions. Make use of constructor, default constructor,
+copy constructor,
+destructor, static member functions, friend class, this pointer, inline
+code and dynamic
+memory allocation operators-new and delete as well as exception handling.
+*/
+
+
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+class StudData;
+
+class Student{
+    string name;
+    int roll_no;
+    string cls;
+    char* division;
+    string dob;
+    char* bloodgroup;
+    static int count;
+
+    public:
+
+    Student()          // Default Constructor
+    {
+        name="";
+        roll_no=0;
+        cls="";
+        division=new char;
+        dob="dd/mm/yyyy";
+        bloodgroup=new char[4];
+    }
+
+    ~Student()
+    {
+        delete division;
+        delete[] bloodgroup;
+    }
+
+    static int getCount()
+    {
+        return count;
+    }
+
+    void getData(StudData*);
+    void dispData(StudData*);
+};
+
+class StudData{
+    string caddress;
+    long int* telno;
+    long int* dlno;
+    friend class Student;
+
+    public:
+
+    StudData()
+    {
+        caddress="";
+        telno=new long;
+        dlno=new long;
+    }
+    
+    ~StudData()
+    {
+        delete telno;
+        delete dlno;
+    }
+
+    void getStudData()
+    {
+        cout<<"Enter Contact Address : ";
+        cin.get();
+        getline(cin,caddress);
+        cout<<"Enter Telephone Number : ";
+        cin>>*telno;
+        cout<<"Enter Driving License Number : ";
+        cin>>*dlno;
+    }
+
+    void dispStudData()
+    {
+        cout<<"Contact Address : "<<caddress<<endl;
+        cout<<"Telephone Number : "<<*telno<<endl;
+        cout<<"Driving License Number : "<<*dlno<<endl;
+    }
+};
+
+inline void Student::getData(StudData* st)
+{
+    cout<<"Enter Student Name : ";
+    getline(cin,name);
+    cout<<"Enter Roll Number : ";
+    cin>>roll_no;
+    cout<<"Enter Class : ";
+    cin.get();
+    getline(cin,cls);
+    cout<<"Enter Division : ";
+    cin>>division;
+    cout<<"Enter Date of Birth : ";
+    cin.get();
+    getline(cin,dob);
+    cout<<"Enter Blood Group : ";
+    cin>>bloodgroup;
+    st->getStudData();
+    count++;
+}
+
+inline void Student::dispData(StudData* st1)
+{
+    cout<<"Student Name : "<<name<<endl;
+    cout<<"Roll Number : "<<roll_no<<endl;
+    cout<<"Class : "<<cls<<endl;
+    cout<<"Division : "<<division<<endl;
+    cout<<"Date of Birth : "<<dob<<endl;
+    cout<<"Blood Group : "<<bloodgroup<<endl;
+    st1->dispStudData();
+}
+
+int Student::count;
+
+int main()
+{
+    Student* stud1[100];
+    StudData* stud2[100];
+    int n=0;
+    char ch;
+
+    do
+    {
+        stud1[n]=new Student;
+        stud2[n]=new StudData;
+        stud1[n]->getData(stud2[n]);
+        n++;
+        cout<<"Do you want to add another student (y/n) : ";
+        cin>>ch;
+        cin.get();
+    } while (ch=='y' || ch=='Y');
+
+    for(int i=0;i<n;i++)
+    {
+        cout<<"---------------------------------------------------------------"<<endl;
+        stud1[i]->dispData(stud2[i]);
+    }
+
+    cout<<"---------------------------------------------------------------"<<endl;
+    cout<<"Total Students : "<<Student::getCount();
+    cout<<endl<<"---------------------------------------------------------------"<<endl;
+
+    for(int i=0;i<n;i++)
+    {
+        delete stud1[i];
+        delete stud2[i];
+    }
+    
+
+    return 0;
+}
+
+//Program 3
+
+
+/* Problem Statement:
+
+
+
+A book shop maintains the inventory of books that are being sold at the shop. The list includes details such as author, title, price, publisher and stock position. Whenever a customer wants a book, the sales person inputs the title and author and the system searches the list and displays whether it is available or not. If it is not, an appropriate message is displayed. If it is, then the system displays the book details and requests for the number of copies required. If the requested copies book details and requests for the number of copies required. If the requested copies are available, the total cost of the requested copies is displayed; otherwise the message ?Required copies not in stock? is displayed.
+
+Design a system using a class called books with suitable member functions and Constructors. Use new operator in constructors to allocate memory space required. Implement C++ program for the system
+
+
+
+*/
+
+
+
+
+
+/* Bookshop.cppp*/
+
+#include<iostream>
+
+#include<string.h>
+
+#include<stdlib.h>
+
+
+
+using namespace std;
+
+class book
+
+{
+
+
+
+ char author[20]; 
+
+ char title[20];
+
+ char publisher[20];
+
+ double price;
+
+ int stock;
+
+   public:
+
+     book();    
+
+   void insertdata();
+
+   void display();
+
+   int search(char[],char[]);
+
+   void nocopies(int);     
+
+};
+
+  book::book()
+
+  {
+
+    char *author=new char[50];
+
+    char * title=new char[50];
+
+    char *publisher=new char[50];
+
+    price=0;
+
+    stock=0;
+
+   }
+
+void book::insertdata()
+
+         {
+
+  cout<<"\n Enter the name of Book:";
+
+  cin>>title;
+
+  cout<<"\n Enter The Name Of Author:";
+
+  cin>>author;
+
+  cout<<"\n Enter The name of Publisher:";
+
+  cin>>publisher;
+
+  cout<<"\n Enter the Price of book:";
+
+  cin>>price;
+
+  cout<<"\n Enter Stock of book:";
+
+  cin>>stock;
+
+ }
+
+
+
+
+
+  void book::display()
+
+ {
+
+ cout<<"\n "<<title<<"\t\t "<<author<<"\t\t  "<<publisher<<" \t\t\t "<<price<<"\t "<<stock;
+
+        }
+
+  int book::search(char t[],char a[])
+
+  {
+
+      if(strcmp(title,t)&&(strcmp(author,a)))
+
+ {
+
+ return 0;
+
+ }
+
+ else
+
+ {
+
+ return 1;
+
+ }
+
+  }
+
+
+
+ void book::nocopies(int num)
+
+{
+
+if(stock>=num)
+
+{
+
+cout<<"\n Title is avilable";
+
+cout<<"\n Cost of"<<num<<"Books is Rs."<<(price*num);
+
+}
+
+else
+
+{
+
+cout<<"\n Required copies not in stock";
+
+}
+
+}
+
+int main()
+
+{
+
+ int ch,n,i,flag=0,copies,key=0;
+
+          book b[100];
+
+          char bname[50];
+
+          char key_title[50],key_author[50];
+
+   do
+
+    {
+
+ cout<<"\n************Book Store*******************";
+
+ cout<<"\n 1.Insert Details of book \n 2.Display \n 3.search \n 4.exit";
+
+ cout<<"\n Enter Your Choice:";
+
+ cin>>ch;
+
+ switch(ch)
+
+  {
+
+      case 1:
+
+                    cout<<"\n How many books data u want to enter";
+
+                    cin>>n;
+
+                    for(i=0;i<n;i++)
+
+                      {
+
+                       b[i].insertdata();
+
+   }
+
+                     break;
+
+     case 2:
+
+                       cout<<"\n"<<"TITLE"<<"\t \t "<<"AUTHOR"<<"\t\t"<<"PUBLISHER"<<"\t\t"<<"PRICE"<<"\t "<<"STOCK";
+
+                        for(i=0;i<n;i++)
+
+    {
+
+                        cout<<"\n";
+
+   
+
+         b[i].display();   
+
+     }
+
+   
+
+                        break;
+
+                    
+
+   case 3:
+
+                          cout<<"\n Enter title of required book";
+
+                           cin>>key_title;
+
+                           cout<<"\n Enter author of required book";
+
+                            cin>>key_author;
+
+                             
+
+                            for(i=0;i<n;i++)
+
+                          {
+
+                              if(b[i].search(key_title,key_author))
+
+                               {
+
+                                  flag=1;
+
+ cout<<"\n"<<"TITLE"<<"\t \t "<<"AUTHOR"<<"\t\t"<<"PUBLISHER"<<"\t\t"<<"PRICE"<<"\t "<<"STOCK";
+
+                                  b[i].display();                        
+
+    //break;
+
+    key=i;
+
+            }
+
+    }
+
+   if(flag==1)                          
+
+    cout<<"\n Book is available";
+
+   else
+
+ {
+
+     cout<<"\n book is Not available";
+
+        break;
+
+ }        
+
+              if(flag==1)
+
+                      {
+
+                      cout<<"\n Please enter the required number of copies of the book";
+
+                       cin>>copies;
+
+                      b[key].nocopies(copies);
+
+                     }
+
+                   
+
+                     break;
+
+                case 4: exit(EXIT_SUCCESS);
+
+   break;
+
+  default :
+
+                    cout<<"\n Wrong Choice";
+
+                       break;
+
+ }   
+
+   }while(ch!=5);
+
+ return 0;
+
+}
+
+
+
+//program 4 
+/*
+Write a C++ program that creates an output file, writes information to it, closes the file, open it again as an input file and read the information from the file.
+*/
+
+#include<iostream>
+#include<fstream>
+using namespace std;
+class Employee              // declaring class employee
+{
+ string Name;
+ int ID;
+ double salary;
+ public:
+ void accept()
+ {
+ cout<<"\n Name : ";
+ cin.ignore();
+getline(cin,Name);
+ cout<<"\n Id : ";
+ cin>>ID;
+ cout<<"\n Salary : ";
+ cin>>salary;
+ }
+ void display()
+ {
+ cout<<"\n Name : "<<Name;
+ cout<<"\n Id : "<<ID;
+ cout<<"\n Salary : "<<salary<<endl;
+ }
+};
+
+int main()
+{
+ Employee o[5];
+ fstream f;
+ int i,n;
+
+ f.open("demo.txt",ios::out);
+ cout<<"\n Enter the number of employees you want to store : ";
+ cin>>n;
+ for(i=0;i<n;i++)
+ {
+ cout<<"\n Enter information of Employee "<<i+1<<"\n";
+ o[i].accept();
+ f.write((char*)&o[i],sizeof o[i]);
+ }
+
+ f.close();
+
+ f.open("demo.txt",ios::in);
+ cout<<"\n Information of Employees is as follows : \n";
+ for(i=0;i<n;i++)
+ {
+ cout<<"\nEmployee "<<i+1<<"\n";
+ f.write((char*)&o[i],sizeof o[i]);
+ o[i].display();
+ }
+ f.close();
+ 
+ return 0;
+}
+
+
+
+//program 5 
+/*
+Write a function template for selection sort that inputs, sorts and outputs an integer array and
+a float array.
+*/
+
+#include<iostream>
+using namespace std;
+int n;
+#define size 10
+template<class T>
+void sel(T A[size])
+{
+    int i,j,min;
+    T temp;
+    for(i=0;i<n-1;i++)
+    {
+        min=i;
+        for(j=i+1;j<n;j++)
+        {
+            if(A[j]<A[min])
+            min=j;
+        }
+        temp=A[i];
+        A[i]=A[min];
+        A[min]=temp;
+    }
+    cout<<"\nSorted array:";
+    for(i=0;i<n;i++)
+    {
+        cout<<" "<<A[i];
+    }
+}
+
+int main()
+{
+    int A[size];
+    float B[size];
+    int i;
+    int ch;
+    do
+	{
+		cout<<"\n* * * * * SELECTION SORT SYSTEM * * * * *";
+		cout<<"\n--------------------MENU-----------------------";
+		cout<<"\n1. Integer Values";
+		cout<<"\n2. Float Values";
+		cout<<"\n3. Exit";
+		cout<<"\n\nEnter your choice : ";
+		cin>>ch;
+		
+		switch(ch)
+		{
+			case 1:
+				cout<<"\nEnter total no of int elements:";
+                cin>>n;
+                cout<<"\nEnter int elements:";
+                for(i=0;i<n;i++)
+                {
+                    cin>>A[i];
+                }
+                sel(A);
+				break;
+				
+			case 2:
+				cout<<"\nEnter total no of float elements:";
+                cin>>n;
+                cout<<"\nEnter float elements:";
+                for(i=0;i<n;i++)
+                {
+                    cin>>B[i];
+                }
+                sel(B);
+				break;
+				
+			case 3:
+				exit(0);
+		}
+	}while(ch!=3);
+   
+   
+    
+   return 0;
+    
+}
+
+
+
+
+//program 6
+/*
+Write C++ Program using STL for sorting and searching user defined
+records such as item records using vector container.
+*/
+#include <iostream> //standard input output stream header file
+#include <algorithm> //The STL algorithms are generic because they can operate on a variety of data structures
+#include <vector> //The header file for the STL vector library is vector.
+using namespace std;
+class Item // creating class Item
+{
+ public:
+ char name[10];
+ int quantity;
+ int cost;
+ int code;
+ bool operator ==(const Item & i1) //Boolean operators allow you to create more complex conditional statements
+ {
+ if(code==i1.code) //operator will return 1 if the comparison is true, or 0 if the comparison is false
+ return 1;
+ return 0;
+ }
+ bool operator<(const Item& i1)
+ {
+ if(code<i1.code) //operator will return 1 if the comparison is true, or 0 if the comparison is false
+ return 1;
+ return 0;
+ }
+};
+vector<Item> o1;
+void print(Item &i1);
+void display();
+void insert();
+void search();
+void dlt();
+bool compare(const Item &i1, const Item &i2)
+{
+ //if (i1.name != i2.name) return i1.cost < i2.cost;
+ return i1.cost < i2.cost;
+}
+int main()
+{
+ int ch;
+ do
+ {
+ cout<<"\n* * * * * Menu * * * * *";
+ cout<<"\n1.Insert";
+ cout<<"\n2.Display";
+ cout<<"\n3.Search";
+ cout<<"\n4.Sort";
+ cout<<"\n5.Delete";
+ cout<<"\n6.Exit";
+ cout<<"\nEnter your choice : ";
+ cin>>ch;
+
+ switch(ch)
+ {
+ case 1:
+ insert();
+ break;
+
+ case 2:
+ display();
+ break;
+
+ case 3:
+ search();
+ break;
+
+ case 4:
+ sort(o1.begin(),o1.end(),compare);
+ cout<<"\n\n Sorted on Cost : ";
+ display();
+ break;
+
+ case 5:
+ dlt();
+ break;
+
+ case 6:
+ exit(0);
+ }
+ 
+ }while(ch!=7);
+ return 0;
+}
+void insert()
+{
+ Item i1;
+ cout<<"\nEnter Item Name : ";
+ cin>>i1.name;
+ cout<<"\nEnter Item Quantity : ";
+ cin>>i1.quantity;
+ cout<<"\nEnter Item Cost : ";
+ cin>>i1.cost;
+ cout<<"\nEnter Item Code : ";
+ cin>>i1.code;
+ o1.push_back(i1);
+}
+void display()
+{
+ for_each(o1.begin(),o1.end(),print);
+}
+void print(Item &i1)
+{
+ cout<<"\n";
+ cout<<"\nItem Name : "<<i1.name;
+ cout<<"\nItem Quantity : "<<i1.quantity;
+ cout<<"\nItem Cost : "<<i1.cost;
+ cout<<"\nItem Code : "<<i1.code;
+ cout<<"\n\n";
+}
+void search()
+{
+ vector<Item>::iterator p;
+ Item i1;
+ cout<<"\nEnter Item Code to search : ";
+ cin>>i1.code;
+ p=find(o1.begin(),o1.end(),i1);
+ if(p==o1.end())
+ {
+ cout<<"\nNot found!!!";
+ }
+ else
+ {
+ cout<<"\nFound!!!";
+ }
+}
+void dlt()
+{
+ vector<Item>::iterator p;
+ Item i1;
+ cout<<"\nEnter Item Code to delete : ";
+ cin>>i1.code;
+ p=find(o1.begin(),o1.end(),i1);
+ if(p==o1.end())
+ {
+ cout<<"\nNot found!!!";
+ }
+ else
+ {
+ o1.erase(p);
+ cout<<"\nDeleted!!!";
+ }
+}
+
+
+//program 7
+#include <iostream>
+#include <map>
+#include <string>
+#include <utility>
+
+using namespace std;
+
+int main()
+{
+	typedef map<string,int> mapType;
+	mapType populationMap;
+	
+	populationMap.insert(pair<string, float>("Maharashtra", 125));
+	populationMap.insert(pair<string, float>("Uttar Pradesh", 225));
+	populationMap.insert(mapType::value_type("Bihar", 120)); 
+	populationMap.insert(mapType::value_type("West Bengal", 100)); 
+	populationMap.insert(make_pair("Madhya Pradesh", 90)); 
+	populationMap.insert(make_pair("Tamil Nadu", 80)); 
+	populationMap.insert(make_pair("Rajasthan", 78));
+	populationMap.insert(make_pair("Andhra Pradesh", 53));
+	populationMap.insert(make_pair("Odisha", 47));
+	populationMap.insert(make_pair("Kerala", 38));
+	populationMap.insert(make_pair("Telangana", 37));
+	populationMap.insert(make_pair("Assam", 35));
+	populationMap.insert(make_pair("Jharkhand", 38));
+	populationMap.insert(make_pair("Karnataka", 68));
+	populationMap.insert(make_pair("Gujarat", 70));
+	populationMap.insert(make_pair("Punjab", 31));
+	populationMap.insert(make_pair("Chhattisgarh", 30));
+	populationMap.insert(make_pair("Haryana", 29));
+	populationMap.insert(make_pair("UT Delhi", 19));
+	populationMap.insert(make_pair("UT Jammu and Kashmir", 14));
+	populationMap.insert(make_pair("Uttarakhand", 12));
+	populationMap.insert(make_pair("Himachal Pradesh", 8));
+	populationMap.insert(make_pair("Tripura", 04));
+	populationMap.insert(make_pair("Meghalaya", 4));
+	populationMap.insert(make_pair("Manipur[", 3));
+	populationMap.insert(make_pair("Nagaland", 2));
+	populationMap.insert(make_pair("Goa", 2));
+	populationMap.insert(make_pair("Arunachal Pradesh", 2));
+	populationMap.insert(make_pair("UT Puducherry", 2));
+	populationMap.insert(make_pair("Mizoram", 1));
+	populationMap.insert(make_pair("UT Chandigarh", 1));
+	populationMap.insert(make_pair("Sikkim", 1));
+	populationMap.insert(make_pair("UT Dadra and Nagar Haveli and Daman and Diu", 1));
+	populationMap.insert(make_pair("UT Andaman and Nicobar Islands", 1));
+	populationMap.insert(make_pair("UT Lakshadweep", 0.0003));
+	populationMap.insert(make_pair("UT Ladakh", 0.00006));
+	
+	mapType::iterator iter = --populationMap.end();
+	populationMap.erase(iter);
+	 
+	cout << "Total state and UT of India with Size of populationMap: " << populationMap.size() << '\n';
+	
+	for (iter = populationMap.begin(); iter != populationMap.end(); ++iter) 
+	{
+	 cout << iter->first <<":" << iter->second << " million\n";
+	}
+	
+	char c;
+	do
+	{
+		string state;
+		cout<<"\nEnter that state you want to know the population of: ";
+		cin>>state;
+		iter = populationMap.find(state);
+		if( iter != populationMap.end() ) 
+		    cout << state <<"'s populations is "
+		        << iter->second << " million\n";
+		else
+		    cout << "State is not in populationMap" << '\n';
+		    
+		cout<<"Do you wish to continue?(y/n):";
+		cin>>c;
+	}while(c=='y'||c=='Y');
+	 
+	populationMap.clear();
+	
+	return 0;
+}`;
+                    break;
+                    
+                default:
+                    textToCopy = '';
+            }
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('Copied to clipboard: ' + textToCopy);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
