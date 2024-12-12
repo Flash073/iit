@@ -1,0 +1,3155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>C++ Programs</title>
+    <style>
+        *{user-select:none;}
+        body {
+            background-image: url('bg.png');
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            font-family: monospace, sans-serif;
+            display: flex;
+            flex-direction: column; /* Stack all elements vertically */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            padding-inline: 50px;
+            padding-left: 230px;
+            
+        }
+
+        .flex-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            background-color: #ffffff00;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 20px; /* Space between blocks */
+        }
+
+        .flex-cell {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .flex-cell:hover {
+            background-color: #92ff9b;
+        }
+
+        .flex-cell .title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .flex-container {
+                padding-inline: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .flex-cell {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- First group -->
+    <div class="flex-container" style="justify-content: center;align-items: center;">
+        <div class="flex-cell" onclick="copyText('all')">
+            <div class="title">ALL</div>
+        </div>
+    </div>
+
+    <div class="flex-container">
+        <div class="flex-cell" onclick="copyText('p1')">
+            <div class="title">set_operation</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('p2')">
+            <div class="title">marks in fds</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('p3')">
+            <div class="title">matrix</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('p4')">
+            <div class="title">selection & bubble</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('p5')">
+            <div class="title">quick sort</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('p6')">
+            <div class="title">insertion & shell</div>
+        </div>
+    </div>
+    
+    <!-- Second group (duplicate) -->
+    <div class="flex-container">
+        <div class="flex-cell" onclick="copyText('p7')">
+            <div class="title">SLL</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('p8')">
+            <div class="title">GLL</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('p9')">
+            <div class="title">Palindrone</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('p10')">
+            <div class="title">Parentheised</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('p11')">
+            <div class="title">Job Queue</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('p12')">
+            <div class="title">Dequeue</div>
+        </div>
+        <div class="flex-cell" onclick="copyText('p13')">
+            <div class="title">Pizza</div>
+        </div>
+    </div>
+
+    <script>
+        function copyText(program) {
+            let textToCopy;
+            switch (program) {
+                case 'p1':
+                    textToCopy = String.raw`def removeDuplicate(d):
+    lst=[]
+    for i in d:
+        if i not in lst:
+            lst.append(i)
+    return lst
+
+def intersection(lst1,lst2):
+    lst3=[]
+    for val in lst1:
+        if val in lst2:
+            lst3.append(val)
+    return lst3
+
+def union(lst1,lst2):
+    lst3=lst1.copy()
+    for val in lst2:
+        if val not in lst3:
+            lst3.append(val)
+    return lst3
+
+def diff(lst1,lst2):
+    lst3=[]
+    for val in lst1:
+        if val not in lst2:
+            lst3.append(val)
+    return lst3
+
+def sym_diff(lst1,lst2):
+    lst3=[]
+    D1=diff(lst1,lst2)
+    print("Difference between Cricket and Badminton (C-B) is : ", D1)
+    D2=diff(lst2,lst1)
+    print("Difference between Badminton and Cricket (B-C) is : ", D2)
+    lst3=union(D1,D2)
+    return lst3
+
+
+def CB(lst1,lst2):
+    lst3=intersection(lst1,lst2)
+    print("\n\nList of students who play both cricket and badminton is : ", lst3)
+    return len(lst3)
+
+
+def eCeB(lst1,lst2):
+    lst3=sym_diff(lst1,lst2)
+    print("\nList of students who play either cricket or badminton but not both is : ",lst3)
+    return len(lst3)
+
+def nCnB(lst1,lst2,lst3):
+    lst4=diff(lst1,union(lst2,lst3))
+    print("\n\nList of students who play neither cricket nor badminton is : ",lst4)
+    return len(lst4)
+
+def CBnF(lst1,lst2,lst3):
+    lst4=diff(intersection(lst1,lst2),lst3)
+    print("\n\nList of students who play cricket and football but not badminton is : ",lst4)
+    return len(lst4)
+
+SEComp = []
+n = int(input("\nEnter number of students in SE COMP: "))
+print("Enter the names of",n,"students (Please press ENTER after entering each students name) :")
+for i in range(0, n):
+    ele = input()
+    SEComp.append(ele)  # adding the element
+print("Original list of students in SEComp : " + str(SEComp))
+
+
+Cricket = []
+n = int(input("\n\nEnter number of students who play cricket : "))
+print("Enter the names of",n,"students who play cricket (Please press ENTER after entering each students name) :")
+for i in range(0, n):
+    ele = input()
+    Cricket.append(ele)  # adding the element
+print("Original list of students playing cricket is :" +str(Cricket))
+Cricket=removeDuplicate(Cricket)
+print("The list of students playing cricket after removing duplicates : " +str(Cricket))
+
+
+
+
+
+Football = []
+n = int(input("\n\nEnter number of students who play football : "))
+print("Enter the name of",n,"students who play football (Please press ENTER after entering each students name) :")
+for i in range(0, n):
+    ele = input()
+    Football.append(ele)  # adding the element
+print("Original list of students playing football :" +str(Football))
+Football=removeDuplicate(Football)
+print("The list of students playing football after removing duplicates : " +str(Football))
+
+
+
+
+Badminton = []
+n = int(input("\n\nEnter number of students who play badminton : "))
+print("Enter the name of",n,"students who play badminton (Please press ENTER after entering each students name) :")
+for i in range(0, n):
+    ele = input()
+    Badminton.append(ele)  # adding the element
+print("Original list of students playing badminton :" +str(Badminton))
+Badminton=removeDuplicate(Badminton)
+print("The list of students playing badminton after removing duplicates : " +str(Badminton))
+
+flag=1
+while flag==1:
+    print("\n\n--------------------MENU--------------------\n")
+    print("1. List of students who play both cricket and badminton")
+    print("2. List of students who play either cricket or badminton but not both")
+    print("3. List of students who play neither cricket nor badminton")
+    print("4. Number of students who play cricket and football but not badminton")
+    print("5. Exit\n")
+    ch=int(input("Enter your Choice (from 1 to 5) :"))
+
+    if ch==1:
+        print("Number of students who play both cricket and badminton : ", CB(Cricket,Badminton))
+        a = input("\n\nDo you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==2:
+        print("Number of students who play either cricket or badminton but not both : ", eCeB(Cricket, Badminton))
+        a = input("\n\nDo you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==3:
+        print("Number of students who play neither cricket nor badminton : ", nCnB(SEComp,Cricket,Badminton))
+        a = input("\n\nDo you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==4:
+        print("Number of students who play cricket and football but not badminton : ", CBnF(Cricket,Football,Badminton))
+        a = input("\n\nDo you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==5:
+        flag=0
+        print("Thanks for using this program!")
+
+    else:
+        print("!!Wrong Choice!! ")
+        a=input("\n\nDo you want to continue (yes/no) :")
+        if a=="yes":
+            flag=1
+        else:
+            flag=0
+            print("Thanks for using this program!")
+
+`;
+                    break;
+                case 'p2':
+                    textToCopy = String.raw`def average(listofmarks):
+    sum=0
+    count=0
+    for i in range(len(listofmarks)):
+        if listofmarks[i]!=-1:
+            sum+=listofmarks[i]
+            count+=1
+    avg=sum/count
+    print("Total Marks : ", sum)
+    print("Average Marks :", avg)
+
+def Maximum(listofmarks):
+    for i in range(len(listofmarks)):
+        if listofmarks[i]!=-1:
+            Max=listofmarks[0]
+            break
+
+    for i in range(1,len(listofmarks)):
+        if listofmarks[i]>Max:
+            Max=listofmarks[i]
+    return(Max) 
+
+def Minimum(listofmarks):
+    for i in range(len(listofmarks)):
+        if listofmarks[i] != -1:
+            Min = listofmarks[0]
+            break
+    for i in range(1,len(listofmarks)):
+        if listofmarks[i]!=-1 and listofmarks[i]<Min:
+            Min=listofmarks[i]
+    return(Min)
+
+
+
+def absentcount(listofmarks):
+    count=0
+    for i in range(len(listofmarks)):
+        if listofmarks[i]==-1:
+              count+=1
+    return(count)
+
+y
+def maxFrequency(listofmarks):
+    Max=0
+    for j in listofmarks:
+        if listofmarks.count(j)>Max and j!=-1:
+            Max=listofmarks.count(j)
+            mark=j
+
+    return(mark,Max)
+
+
+
+marksinFDS=[]
+numberofstudents=int(input("Enter total number of students : "))
+for i in range(numberofstudents):
+    print("Enter marks of student ", i+1 ," : ")
+    marks=int(input())
+    marksinFDS.append(marks)
+
+while True:
+    print("\n\n--------------------MENU--------------------\n")
+    print("1. Total and Average Marks of the Class")
+    print("2. Highest and Lowest Marks in the Class")
+    print("3. Number of Students absent for the test")
+    print("4. Marks with Highest Frequency")
+    print("5. Exit\n")
+    ch=int(input("Enter your Choice (from 1 to 5) :"))
+
+    if ch==1:
+        average(marksinFDS)
+
+    elif ch==2:
+        print("Highest Score in Class : ", Maximum(marksinFDS))
+        print("Lowest Score in Class : ", Minimum(marksinFDS))
+
+    elif ch==3:
+        print("Number of Students absent in the test : ", absentcount(marksinFDS))
+
+    elif ch==4:
+        mark,fr = maxFrequency(marksinFDS)
+        print("Highest frequency is of marks",mark," that is",fr)
+
+    elif ch==5:
+       print("Thanks for using this program!")
+       break
+
+    else:
+        print("!!Wrong Choice!! ")
+`;
+                    break;
+                case 'p3':
+                    textToCopy = String.raw`def Add():
+    for i in range(0,m):
+        for j in range(0,n):
+            C[i][j] = A[i][j] + B[i][j]
+    display(C,m,n)
+
+def Sub():
+    for i in range(0,m):
+        for j in range(0,n):
+            C[i][j] = A[i][j] - B[i][j]
+    display(C,m,n)
+
+def Mul():
+    for i in range(0,m):
+        for j in range(0,q):
+            for k in range(0,n):
+                C[i][j]=C[i][j]+ A[i][k] * B[k][j]
+    display(C,m,q)
+
+def Transpose():
+    for i in range(0,n):
+        for j in range(0,m):
+            C[i][j] = A[j][i]
+    display(C,n,m)
+
+def display(C1,m,n):
+    print('Resultant Matrix is:')
+    for i in range(0,m):
+         print('\n')
+         for j in range(0,n):
+            print(' ',C1[i][j],end=" ")
+
+m = int(input('Enter no. of rows for Matrix 1:'))
+n = int(input('Enter no. of columns for Matrix 1:'))
+A = [[0 for j in range(0, n)] for i in range(0, m)]
+
+print('Enter Elements of Matrix A')
+for i in range(0, m):
+    for j in range(0, n):
+       A[i][j] = int(input('\nEnter element A {}{}:'.format(i, j)))
+display(A,m,n)
+
+p = int(input('\nEnter no. of rows for Matrix 2:'))
+q = int(input('\nEnter no. of columns for Matrix 2:'))
+B = [[0 for j in range(0, q)] for i in range(0, p)]
+print('\nEnter Elements of Matrix B')
+for i in range(0, p):
+    for j in range(0, q):
+        B[i][j] = int(input('\nEnter element B{}{}:'.format(i, j)))
+display(B,p,q)
+
+while True:
+    print('\n1.Add Matrices\n2.Subtract Matrices\n3.Multiply Matrices\n4.Transpose of Matrices\n5.Exit')
+    choice = int(input('Enter Choice:'))
+    if choice==1:
+        if m==p and n==q:
+            print('Matrices can be Added')
+            C = [[0 for j in range(0, n)] for i in range(0, m)]
+            Add()
+        else:
+                print('Matrices cannot be Added')
+
+    elif choice==2:
+        if m==p and n==q:
+                print('Matrices can be Subtracted')
+                C = [[0 for j in range(0, n)] for i in range(0, m)]
+                Sub()
+        else:
+                print('Matrices cannot be Subtracted')
+
+    elif choice==3:
+            if n==p:
+                print('Matrices can be Multiplied')
+                C = [[0 for j in range(0, q)] for i in range(0, m)]
+                Mul()
+            else:
+                print('Matrices cannot be Multiplied')
+
+    elif choice==4:
+                C = [[0 for j in range(0, m)] for i in range(0, n)]
+                Transpose()
+
+    elif choice==5:
+         print("Thanks for using this program!")
+         break
+
+    else:
+        print('\nPlease enter a valid choice')`;
+                    break;
+                case 'p4':
+                    textToCopy = String.raw`def SelectionSort(arr,n):
+    for i in range(0,n-1):
+        Min = i
+        for j in range(i+1,n):
+            if(arr[j]<arr[Min]):
+                Min = j
+        if(Min!=i):
+            temp=arr[i]
+            arr[i]=arr[Min]
+            arr[Min]=temp
+
+    print(arr)
+
+def BubbleSort(arr,n):
+        for i in range(0,n):
+            for j in range(0,n-1):
+                if(arr[j] > arr[j+1]):
+                    temp = arr[j]
+                    arr[j] = arr[j+1]
+                    arr[j+1] = temp
+        print(arr)
+        print("Top Five Scores are...")
+        for i in range (n-1,n-6,-1):
+            print(arr[i])
+    
+        
+#Driver Code
+print("\nhow many no. of students in first year ?")
+n = int(input())
+array = []
+i=0
+for i in range(n):
+     item = int(input("\n Enter percentage marks of student"))
+     array.append(item)
+
+print("You have entered following scores...\n")
+print(array)
+flag =1
+while flag==1:
+    print("Main Menu \n 1. Selection Sort \n 2. Bubble Sort and display Top 5 scores \n 3. Exit")
+    print("\n Enter your Choice: ")
+    choice = int(input())
+    if(choice == 1):
+        print("\n The sorted Scores are...")
+        SelectionSort(array,n)
+        a = input("\n\nDo you want to continue (y/n) :")
+        if a == "y":
+                flag = 1
+        else:
+                flag = 0
+                print("Thanks for using this program!")
+                
+    elif choice==2:
+
+            print("\n The sorted Scores are...")
+            BubbleSort(array,n)
+            a = input("\n\nDo you want to continue (y/n) :")
+            if a == "y":
+                    flag = 1
+            else:
+                    flag = 0
+                    print("Thanks for using this program!")
+    elif choice==3:
+            flag=0
+            print("Thanks for using this program!")
+    else:
+             print('\nPlease enter a valid choice')
+             a = input("\n\nDo you want to continue (y/n) :")
+             if a == "y":
+                  flag = 1
+             else:
+                 flag = 0
+                 print("Thanks for using this program!")
+`;
+                    break;
+                case 'p5':
+                    textToCopy = String.raw`def partition(arr, low, high):
+    pivot = arr[low]
+    i = low + 1
+    j = high
+    while True:
+        while (i <= j and arr[i] <= pivot):
+            i = i + 1
+        while (i <= j and arr[j] >= pivot):
+            j = j - 1
+        if (j < i):
+            break
+        else:
+            arr[i], arr[j] = arr[j], arr[i]
+
+    arr[low], arr[j] = arr[j], arr[low]
+    return j
+
+def Quicksort(arr, low, high):
+    if (low < high):
+        p = partition(arr, low, high)
+        Quicksort(arr, low, p - 1)
+        Quicksort(arr, p + 1, high)
+
+# Driver Code
+n = int(input("\nHow many students are there?"))
+arr = []
+for i in range(0, n):
+    item = float(input("\nEnter percentage marks"))
+    arr.append(item)
+
+print("You have entered following scores...\n")
+print(arr)
+
+print("\n The sorted Scores are...")
+Quicksort(arr, 0, n - 1)
+print(arr)
+print("Top Five Scores are...")
+for i in range(len(arr) - 1, len(arr) - 6, -1):
+    print(arr[i])`;
+                    break;
+                case 'p6':
+                    textToCopy = String.raw`def InsertSort(arr, n):
+    for i in range(1, n):
+        temp = arr[i]
+        j = i-1
+        while (j>=0 and temp< arr[j]):
+            arr[j+1] = arr[j]
+            j = j- 1
+        arr[j+1] = temp
+    print(arr)
+
+def ShellSort(arr, n):
+    gap = n // 2
+    while(gap>=1):
+        for j in range(gap, n):
+            i=j-gap
+            while (i>=0):
+                if arr[i+gap]>arr[i]:
+                    break
+                else:
+                    arr[i+gap], arr[i] = arr[i], arr[i+gap]
+                i=i-gap
+        gap = gap // 2
+    print(arr)
+    print("Top Five Scores are...")
+    for i in range(n- 1, n- 6, -1):
+        print(arr[i])
+
+# Driver Code
+print("\nHow many students are there?")
+n = int(input())
+array = []
+i = 0
+for i in range(n):
+    print("\n Enter percentage marks")
+    item = float(input())
+    array.append(item)
+
+print("You have entered following scores...\n")
+print(array)
+
+while True:
+    print("Main Menu    \n 1. Insertion Sort\n 2. Shell Sort \n 3. Exit")
+    print("\n Enter your Choice: ")
+    choice = int(input())
+    if (choice == 1):
+        print("\n The sorted Scores are...")
+        InsertSort(array, n)
+
+    elif choice == 2:
+        print("\n The sorted Scores are...")
+        ShellSort(array, n)
+
+    elif choice == 3:
+        print("Thanks for using this program!")
+        break
+
+    else:
+        print('\nPlease enter a valid choice')`;
+                    break;
+                case 'p7':
+                    textToCopy = String.raw`//  STANDARD LINKED LIST
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+class node{
+	public:
+		string name;
+		char van,but;
+		node *next;
+		node *null;
+		node(){
+			next=null;
+		};
+};
+class List
+{
+	node *head;
+	public:
+		List()
+		{
+			head = NULL;
+		}
+	
+		void insertAtEnd(string s,char v,char b)
+		
+		{
+			node *p = new node();
+			p->van = v;
+			p->name=s;
+			p->but=b;
+			if (head == NULL)
+			{
+				head = p;
+			}
+			else
+			{
+				
+				node *ptr = head;
+				while (ptr->next != NULL)
+				{
+					ptr = ptr->next;
+				}
+				ptr->next = p;
+			}
+		}
+		
+		void display()
+		{
+			int count=0;
+			if (head == NULL){
+				cout<<"List is empty"<<endl;
+			}
+			else
+			{
+				
+				node *p = head;
+				cout<<"Linked List: \n";
+				while (p != NULL){
+					cout<<p->name<<"\t"<<p->van<<"\t"<<p->but<<"\n";
+					count++;
+					p = p->next;
+				}
+			
+			}
+			cout<<"Number of elemnets in linked list:"<<count;
+		}	
+		void disp_vanAndbut()
+		{
+			int count=0;
+			if (head == NULL){
+				cout<<"List is empty"<<endl;
+			}
+			else
+			{
+				
+				node *p = head;
+				cout<<"students who like both vanila and butterscotch.......\n";
+				while (p != NULL)
+				{
+				
+					if(p->van=='y' && p->but=='y')
+					{
+						cout<<p->name<<"\t"<<p->van<<"\t"<<p->but<<"\n";
+						count++;
+					}
+					p = p->next;				
+				}
+			
+			}
+			cout<<"Number of elemnets in linked list:"<<count;
+		}	
+		void disp_EitherVanOrBut()
+		{
+			int count=0;
+			if (head == NULL){
+				cout<<"List is empty"<<endl;
+			}
+			else
+			{
+				
+				node *p = head;
+				cout<<"Students who like Either vanila Or Butterscotch.......\n";
+				while (p != NULL)
+				{
+				
+					if(!((p->van=='y' && p->but=='y')||(p->van=='n' && p->but=='n')))
+					{
+						cout<<p->name<<"\n";
+						count++;
+					}
+					p = p->next;				
+				}
+			
+			}
+			cout<<"Number of elemnets in linked list:"<<count;
+		}	
+		void disp_NitherVanNorBut()
+		{
+			int count=0;
+			if (head == NULL){
+				cout<<"List is empty"<<endl;
+			}
+			else
+			{
+				
+				node *p = head;
+				cout<<"Students who like Either vanila Or Butterscotch.......\n";
+				while (p != NULL)
+				{
+				
+					if(p->van=='n' && p->but=='n')
+					{
+						cout<<p->name<<"\n";
+						count++;
+					}
+					p = p->next;				
+				}
+			
+			}
+			cout<<"Number of elemnets in linked list:"<<count;
+		}	
+	
+	
+};
+
+int main()
+{
+	
+	printf("1 to Insert data...");
+	printf("\n2 Display data.....");
+	printf("\n3 Display Students who like both vanila and butterscotch......");
+	printf("\n4 Display Students who like Either Vanila Or Butterscotch......");
+	printf("\n4 Display Students who like Nither Vanila Nor Butterscotch......");
+	printf("\n0 to Exit");
+	
+	int choice,p;
+	char van,but;
+    string nm;
+	List ll;
+	
+		do 
+		{
+			cout<<"\nEnter Your Choice: ";
+			cin>>choice;
+			switch (choice)
+			{
+				case 1:
+					cout<<"Enter name:  ";
+					cin>>nm;
+					cout<<"Do you like vanilla y/n: ";
+					cin>>van;
+					cout<<"Do you like butterscotch y/n: ";
+					cin>>but;
+					ll.insertAtEnd(nm,van,but);
+					break;
+				
+				case 2:
+					ll.display();
+					break;
+				
+				case 3:
+					ll.disp_vanAndbut();
+					break;
+					
+				case 4:
+					ll.disp_EitherVanOrBut();
+					break;
+				case 5:
+					ll.disp_NitherVanNorBut();
+					break;
+			
+						
+			}
+		} while (choice != 0);
+	
+}`;
+                    break;
+                case 'p8':
+                    textToCopy = String.raw`#include <stdlib.h>
+#include <iostream>
+using namespace std;
+#define MAX 50
+struct node
+{
+  char c;
+  int ind;
+  struct node *next, *down;
+} *head;
+class GList
+{
+public:
+  GList();
+  struct node *create(char *);
+  void display(struct node *);
+  int depth(node *p);
+  int max(int i, int j);
+};
+GList ::GList()
+{
+  head = NULL;
+}
+node *GList ::create(char *a)
+{
+  static int i;
+  node *New;
+  if (a[i] == '\0')
+    return NULL;
+  for (; a[i] == ',' || a[i] == ' '; i++)
+    ;
+  New = new node;
+  if (New == NULL)
+  {
+    cout << "Allocation failed!!!!!!";
+    return NULL;
+  }
+  if (a[i] == '{')
+  {
+    New->ind = 1;
+    New->c = '{';
+    New->next = NULL;
+    i++;
+    New->down = create(a);
+    if (a[i] != '\0')
+      New->next = create(a);
+    else
+    {
+      i = 0;
+    }
+  }
+  else if (a[i] != '}' && a[i] != ',')
+  {
+    New->ind = 0;
+    New->c = a[i];
+    New->down = NULL;
+    i++;
+    New->next = create(a);
+  }
+  else if (a[i] == '}')
+  {
+    i++;
+    free(New);
+    return NULL;
+  }
+
+  return New;
+}
+int GList::max(int i, int j)
+{
+  return i > j ? i : j;
+}
+void GList::display(node *temp)
+{
+  if (temp == NULL)
+    return;
+  if (temp->ind == 1)
+  {
+    cout << "{";
+    display(temp->down);
+    cout << "}";
+    if (temp->next != NULL)
+      display(temp->next);
+  }
+  else
+  {
+    cout << " " << temp->c;
+    display(temp->next);
+  }
+}
+int GList ::depth(node *temp)
+{
+  int i = 0, j = 0;
+  if (temp == NULL)
+    return 0;
+  if (temp->ind = 1)
+  {
+    j = 1 + (depth(temp->down));
+    if (temp->next != NULL)
+      i = depth(temp->next);
+  }
+  else
+    i = depth(temp->next);
+  return max(i, j);
+}
+int main()
+{
+  int choice, d;
+  char set[MAX];
+  node *start = NULL;
+  GList obj;
+  char ans;
+  do
+  {
+    cout << "\n\t\tThe program for GLL:";
+    cout << "\n\t1.create";
+    cout << "\n\t2.display";
+    cout << "\n\t3.depth";
+    cout << "\n\nEnter your choice :";
+    cin >> (choice);
+    switch (choice)
+    {
+    case 1:
+      set[0] = '\0';
+      cout << "\nEnter string";
+      cin >> set;
+      start = obj.create(set);
+      break;
+    case 2:
+      cout << "\nDisplaying List :";
+      obj.display(start);
+      break;
+    case 3:
+      if (start == NULL)
+        cout << "\nDepth of the list is :0";
+      else
+      {
+        d = obj.depth(start);
+        cout << "\nDepth of the list is :" << d - 1;
+      }
+      break;
+    default:
+      exit(0);
+      break;
+    }
+    cout << "\nDo you want to continue?";
+    cin >> ans;
+  } while (ans == 'y' || ans == 'Y');
+  return 0;
+}`;
+                    break;
+                case 'p9':
+                    textToCopy = String.raw`#include <iostream>
+#include <string.h>
+#define max 50
+using namespace std;
+class STACK
+{
+private:
+	char a[max];
+	int top;
+
+public:
+	STACK()
+	{
+		top = -1;
+	}
+	void push(char);
+	void reverse();
+	void convert(char[]);
+	void palindrome();
+};
+
+void STACK::push(char c)
+{
+	top++;
+	a[top] = c;
+	a[top + 1] = '\0';
+	// cout<<endl<<c<<" is pushed on stack ...";
+}
+void STACK::reverse()
+{
+	char str[max], j = 0;
+
+	for (int i = top; i >= 0; i--)
+	{
+		cout << a[i];
+		str[j] = a[i];
+		j++;
+	}
+	cout << "\n\nReverse string is : " << str;
+	cout << endl;
+}
+void STACK::convert(char str[])
+{
+	int j, k, len = strlen(str);
+	for (j = 0, k = 0; j < len; j++)
+	{
+		if ((str[j] >= 97 && str[j] <= 122) || (str[j] >= 65 && str[j] <= 90))
+		{
+			if (str[j] <= 90 && str[j] >= 65)
+			{
+				str[k] = (str[j] + 32);
+			}
+			else
+			{
+				str[k] = str[j];
+			}
+			k++;
+		}
+	}
+	str[k] = '\0';
+	cout << endl
+		 << "Converted String : " << str << "\n";
+}
+void STACK::palindrome()
+{
+	char str[max];
+	int i, j;
+	for (i = top, j = 0; i >= 0; i--, j++)
+	{
+		str[j] = a[i];
+	}
+	str[j] = '\0';
+	if (strcmp(str, a) == 0)
+		cout << "\n\nString is palindrome...";
+	else
+		cout << "\n\nString is not palindrome...";
+}
+
+int main()
+{
+	STACK stack;
+	char str[max];
+	int i = 0;
+	cout << "\nEnter string to be reversed and check is it palindrome or not : \n\n";
+	cin.getline(str, 50);
+	stack.convert(str);
+	while (str[i] != '\0')
+	{
+		stack.push(str[i]);
+		i++;
+	}
+	stack.palindrome();
+	stack.reverse();
+}`;
+                    break;
+                case 'p10':
+                    textToCopy = String.raw`#include <iostream>
+using namespace std;
+#define size 10
+class stackexp
+{
+    int top;
+    char stk[size];
+
+public:
+    stackexp()
+    {
+        top = -1;
+    }
+    void push(char);
+    char pop();
+    int isfull();
+    int isempty();
+};
+
+void stackexp::push(char x)
+{
+    top = top + 1;
+    stk[top] = x;
+}
+
+char stackexp::pop()
+{
+    char s;
+    s = stk[top];
+    top = top - 1;
+    return s;
+}
+
+int stackexp::isfull()
+{
+    if (top == size)
+        return 1;
+    else
+        return 0;
+}
+
+int stackexp::isempty()
+{
+    if (top == -1)
+        return 1;
+    else
+        return 0;
+}
+
+int main()
+{
+    stackexp s1;
+    char exp[20], ch, x;
+    int i = 0;
+    cout << "\n\t!! Parenthesis Checker..!!!!" << endl;
+    cout << "\nEnter the expression to check whether it is in well paranthesized or not :  ";
+    cin >> exp;
+
+    while (exp[i] != '\0')
+    {
+        ch = exp[i];
+        switch (ch)
+        {
+        case '(':
+            s1.push(ch);
+            break;
+        case '[':
+            s1.push(ch);
+            break;
+        case '{':
+            s1.push(ch);
+            break;
+        case ')':
+            x = s1.pop();
+            if (x != '(')
+            {
+                cout << "\nSorry !!! Not well parenthesized....\n";
+                goto end;
+            }
+            break;
+        case ']':
+            x = s1.pop();
+            if (x != '[')
+            {
+                cout << "\nSorry !!! Not well parenthesized....\n";
+                goto end;
+            }
+            break;
+        case '}':
+            x = s1.pop();
+            if (x != '{')
+            {
+                cout << "\nSorry !!! Not well parenthesized....\n";
+                goto end;
+            }
+            break;
+        default:
+            break;
+        } 
+        i = i + 1;
+    } 
+    if (s1.isempty())
+    {
+        cout << "\nExpression is well parenthesised...\n";
+    }
+    else
+    {
+        cout << "\nSorry !!! Not well parenthesized....\n";
+    }
+end:
+    return 0;
+}`;
+                    break;
+                case 'p11':
+                    textToCopy = String.raw`#include <iostream>
+#define MAX 10
+using namespace std;
+class Queue
+{
+private:
+    int data[MAX];
+    int front, rear;
+
+public:
+    Queue()
+    {
+        front = rear = -1;
+    }
+    int isempty();
+    int isfull();
+    void enqueue(int);
+    int delqueue();
+    void display();
+};
+int Queue::isempty()
+{
+    if (front == rear)
+        return (1);
+    else
+        return (0);
+}
+int Queue::isfull()
+{
+    if (rear == MAX - 1)
+        return (1);
+    else
+        return (0);
+}
+void Queue::enqueue(int x)
+{
+    rear++;
+    data[rear] = x;
+}
+int Queue::delqueue()
+{
+    front++;
+    return (data[front]);
+}
+void Queue::display()
+{
+    int i;
+    cout << "\n";
+    for (i = front + 1; i <= rear; i++)
+        cout << data[i] << " ";
+}
+int main()
+{
+    Queue Q;
+    int ch, x;
+    do
+    {
+        cout << "\n 1.Insert Job\n 2.Delete Job\n 3.Display\n 4.Exit\n Enter your choice : ";
+        cin >> ch;
+        switch (ch)
+        {
+        case 1:
+            if (!Q.isfull())
+            {
+                cout << "\n Enter Job number : \n";
+                cin >> x;
+                Q.enqueue(x);
+                cout << endl;
+            }
+            else
+                cout << "Queue is overflow!!!\n\n";
+            break;
+        case 2:
+            if (!Q.isempty())
+                cout << "\n Deleted Job = " << Q.delqueue() << endl;
+            else
+            {
+                cout << "\n Queue is underflow!!!\n\n";
+            }
+            cout << "\nRemaining Jobs : \n";
+            Q.display();
+            break;
+        case 3:
+            if (!Q.isempty())
+            {
+                cout << "\n Queue contains : \n";
+                Q.display();
+            }
+            else
+                cout << "\n Queue is empty!!!\n\n";
+            break;
+        case 4:
+            cout << "\n Exiting Program.....";
+        }
+    } while (ch != 4);
+    return 0;
+}`;
+                    break;
+                case 'p12':
+                    textToCopy = String.raw`#include <iostream>
+using namespace std;
+#define MAX_SIZE 10
+int arr[MAX_SIZE];
+int front, rear;
+
+class Deque
+{
+public:
+    Deque()
+    {
+        front = -1;
+        rear = -1;
+    }
+
+    void insertFront(int value)
+    {
+        if ((front == 0 && rear == MAX_SIZE - 1) || front == rear + 1)
+        {
+            cout << "Deque is full. Cannot insert at the front." << endl;
+        }
+
+        if (front == -1)
+        {
+            front = rear = 0;
+        }
+        else if (front == 0)
+        {
+            front = MAX_SIZE - 1;
+        }
+        else
+        {
+            front--;
+        }
+
+        arr[front] = value;
+        cout << "Inserted " << value << " at the front." << endl;
+    }
+
+    void insertRear(int value)
+    {
+        if ((front == 0 && rear == MAX_SIZE - 1) || front == rear + 1)
+        {
+            cout << "Deque is full. Cannot insert at the rear." << endl;
+            return;
+        }
+
+        if (front == -1)
+        {
+            front = rear = 0;
+        }
+        else if (rear == MAX_SIZE - 1)
+        {
+            rear = 0;
+        }
+        else
+        {
+            rear++;
+        }
+
+        arr[rear] = value;
+        cout << "Inserted " << value << " at the rear." << endl;
+    }
+
+    void deleteFront()
+    {
+        if (front == -1)
+        {
+            cout << "Deque is empty. Cannot delete from the front." << endl;
+            return;
+        }
+
+        cout << "Deleted " << arr[front] << " from the front." << endl;
+
+        if (front == rear)
+        {
+            front = rear = -1;
+        }
+        else if (front == MAX_SIZE - 1)
+        {
+            front = 0;
+        }
+        else
+        {
+            front++;
+        }
+    }
+
+    void deleteRear()
+    {
+        if (front == -1)
+        {
+            cout << "Deque is empty. Cannot delete from the rear." << endl;
+            return;
+        }
+
+        cout << "Deleted " << arr[rear] << " from the rear." << endl;
+
+        if (front == rear)
+        {
+            front = rear = -1;
+        }
+        else if (rear == 0)
+        {
+            rear = MAX_SIZE - 1;
+        }
+        else
+        {
+            rear--;
+        }
+    }
+
+    void display()
+    {
+        if (front == -1)
+        {
+            cout << "Deque is empty." << endl;
+            return;
+        }
+
+        cout << "Deque elements: ";
+        int i = front;
+        do
+        {
+            cout << arr[i] << " ";
+            i = (i + 1) % MAX_SIZE;
+        } while (i != (rear + 1) % MAX_SIZE);
+        cout << endl;
+    }
+};
+
+int main()
+{
+    int c, i;
+
+    Deque d;
+    do
+    {
+        // perform switch opeartion {
+        cout << "\n 1.insert at beginning";
+        cout << "\n 2.insert at end";
+        cout << "\n 3.show";
+        cout << "\n 4.deletion from front";
+        cout << "\n 5.deletion from rear";
+        cout << "\n 6.exit";
+        cout << "\n enter your choice:";
+        cin >> c;
+        switch (c)
+        {
+        case 1:
+            cout << "enter the element to be inserted";
+            cin >> i;
+            d.insertFront(i);
+            break;
+        case 2:
+            cout << "enter the element to be inserted";
+            cin >> i;
+            d.insertRear(i);
+            break;
+        case 3:
+            d.display();
+            break;
+        case 4:
+            d.deleteFront();
+            break;
+        case 5:
+            d.deleteRear();
+            break;
+        case 6:
+            exit(1);
+            break;
+        default:
+            cout << "invalid choice";
+            break;
+        }
+    } while (c != 7);
+}`;
+                    break;
+                case 'p13':
+                    textToCopy = String.raw`#include <iostream>
+#include <stdlib.h>
+#define size 5
+using namespace std;
+class pizza
+{
+    int front, rear, q[size];
+
+public:
+    pizza()
+    {
+        front = -1;
+        rear = -1;
+    }
+    int isfull();
+    int isempty();
+    void add();
+    void serve();
+    void display();
+};
+int pizza::isfull()
+{
+    if ((front == 0 && rear == size - 1) || front == rear + 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+int pizza::isempty()
+{
+    if (front == -1 && rear == -1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+void pizza::add()
+{
+    if (isfull() == 0)
+    {
+        cout << "\n Enter the Pizza ID: ";
+        if (front == -1 && rear == -1)
+        {
+            front = 0;
+            rear = 0;
+            cin >> q[rear];
+        }
+        else
+        {
+            rear = (rear + 1) % size;
+            cin >> q[rear];
+        }
+        char c;
+        cout << " Do you want to add another order ? ";
+        cin >> c;
+        if (c == 'y' || c == 'Y')
+            add();
+    }
+    else
+    {
+        cout << "\n Orders are full ";
+    }
+}
+void pizza::serve()
+{
+    if (isempty() == 0)
+    {
+        if (front == rear)
+        {
+            cout << "\n Order served is : " << q[front];
+            front = -1;
+            rear = -1;
+        }
+        else
+        {
+            cout << "\n Order served is : " << q[front];
+            front = (front + 1) % size;
+        }
+    }
+    else
+    {
+        cout << "\n No pending orders ";
+    }
+}
+void pizza::display()
+{
+    if (isempty() == 0)
+    {
+        for (int i = front; i != rear; i = (i + 1) % size)
+        {
+            cout << q[i] << "<- ";
+        }
+        cout << q[rear];
+    }
+    else
+    {
+        cout << "\n No pending orders";
+    }
+}
+int main()
+{
+
+    pizza p1;
+    int ch;
+    while (1)
+    {
+        cout << "\n\n * * * * PIZZA PARLOUR * * * * \n\n";
+        cout << "1. Add a Pizza \n";
+        cout << "2. Display the Orders \n";
+        cout << "3. Serve a pizza \n";
+        cout << "4. Exit \n Enter your choice : ";
+        cin >> ch;
+        switch (ch)
+        {
+        case 1:
+            p1.add();
+            break;
+        case 2:
+            p1.display();
+            break;
+        case 3:
+            p1.serve();
+            break;
+        case 4:
+            exit(0);
+        default:
+            cout << "Invalid choice ";
+        }
+    }
+
+    return 0;
+}`;
+                    break;
+                case 'all':
+                    textToCopy = String.raw`#p1
+def removeDuplicate(d):
+    lst=[]
+    for i in d:
+        if i not in lst:
+            lst.append(i)
+    return lst
+
+def intersection(lst1,lst2):
+    lst3=[]
+    for val in lst1:
+        if val in lst2:
+            lst3.append(val)
+    return lst3
+
+def union(lst1,lst2):
+    lst3=lst1.copy()
+    for val in lst2:
+        if val not in lst3:
+            lst3.append(val)
+    return lst3
+
+def diff(lst1,lst2):
+    lst3=[]
+    for val in lst1:
+        if val not in lst2:
+            lst3.append(val)
+    return lst3
+
+def sym_diff(lst1,lst2):
+    lst3=[]
+    D1=diff(lst1,lst2)
+    print("Difference between Cricket and Badminton (C-B) is : ", D1)
+    D2=diff(lst2,lst1)
+    print("Difference between Badminton and Cricket (B-C) is : ", D2)
+    lst3=union(D1,D2)
+    return lst3
+
+
+def CB(lst1,lst2):
+    lst3=intersection(lst1,lst2)
+    print("\n\nList of students who play both cricket and badminton is : ", lst3)
+    return len(lst3)
+
+
+def eCeB(lst1,lst2):
+    lst3=sym_diff(lst1,lst2)
+    print("\nList of students who play either cricket or badminton but not both is : ",lst3)
+    return len(lst3)
+
+def nCnB(lst1,lst2,lst3):
+    lst4=diff(lst1,union(lst2,lst3))
+    print("\n\nList of students who play neither cricket nor badminton is : ",lst4)
+    return len(lst4)
+
+def CBnF(lst1,lst2,lst3):
+    lst4=diff(intersection(lst1,lst2),lst3)
+    print("\n\nList of students who play cricket and football but not badminton is : ",lst4)
+    return len(lst4)
+
+SEComp = []
+n = int(input("\nEnter number of students in SE COMP: "))
+print("Enter the names of",n,"students (Please press ENTER after entering each students name) :")
+for i in range(0, n):
+    ele = input()
+    SEComp.append(ele)  # adding the element
+print("Original list of students in SEComp : " + str(SEComp))
+
+
+Cricket = []
+n = int(input("\n\nEnter number of students who play cricket : "))
+print("Enter the names of",n,"students who play cricket (Please press ENTER after entering each students name) :")
+for i in range(0, n):
+    ele = input()
+    Cricket.append(ele)  # adding the element
+print("Original list of students playing cricket is :" +str(Cricket))
+Cricket=removeDuplicate(Cricket)
+print("The list of students playing cricket after removing duplicates : " +str(Cricket))
+
+
+
+
+
+Football = []
+n = int(input("\n\nEnter number of students who play football : "))
+print("Enter the name of",n,"students who play football (Please press ENTER after entering each students name) :")
+for i in range(0, n):
+    ele = input()
+    Football.append(ele)  # adding the element
+print("Original list of students playing football :" +str(Football))
+Football=removeDuplicate(Football)
+print("The list of students playing football after removing duplicates : " +str(Football))
+
+
+
+
+Badminton = []
+n = int(input("\n\nEnter number of students who play badminton : "))
+print("Enter the name of",n,"students who play badminton (Please press ENTER after entering each students name) :")
+for i in range(0, n):
+    ele = input()
+    Badminton.append(ele)  # adding the element
+print("Original list of students playing badminton :" +str(Badminton))
+Badminton=removeDuplicate(Badminton)
+print("The list of students playing badminton after removing duplicates : " +str(Badminton))
+
+flag=1
+while flag==1:
+    print("\n\n--------------------MENU--------------------\n")
+    print("1. List of students who play both cricket and badminton")
+    print("2. List of students who play either cricket or badminton but not both")
+    print("3. List of students who play neither cricket nor badminton")
+    print("4. Number of students who play cricket and football but not badminton")
+    print("5. Exit\n")
+    ch=int(input("Enter your Choice (from 1 to 5) :"))
+
+    if ch==1:
+        print("Number of students who play both cricket and badminton : ", CB(Cricket,Badminton))
+        a = input("\n\nDo you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==2:
+        print("Number of students who play either cricket or badminton but not both : ", eCeB(Cricket, Badminton))
+        a = input("\n\nDo you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==3:
+        print("Number of students who play neither cricket nor badminton : ", nCnB(SEComp,Cricket,Badminton))
+        a = input("\n\nDo you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==4:
+        print("Number of students who play cricket and football but not badminton : ", CBnF(Cricket,Football,Badminton))
+        a = input("\n\nDo you want to continue (yes/no) :")
+        if a == "yes":
+            flag = 1
+        else:
+            flag = 0
+            print("Thanks for using this program!")
+
+    elif ch==5:
+        flag=0
+        print("Thanks for using this program!")
+
+    else:
+        print("!!Wrong Choice!! ")
+        a=input("\n\nDo you want to continue (yes/no) :")
+        if a=="yes":
+            flag=1
+        else:
+            flag=0
+            print("Thanks for using this program!")
+
+#p2
+def average(listofmarks):
+    sum=0
+    count=0
+    for i in range(len(listofmarks)):
+        if listofmarks[i]!=-1:
+            sum+=listofmarks[i]
+            count+=1
+    avg=sum/count
+    print("Total Marks : ", sum)
+    print("Average Marks :", avg)
+
+def Maximum(listofmarks):
+    for i in range(len(listofmarks)):
+        if listofmarks[i]!=-1:
+            Max=listofmarks[0]
+            break
+
+    for i in range(1,len(listofmarks)):
+        if listofmarks[i]>Max:
+            Max=listofmarks[i]
+    return(Max) 
+
+def Minimum(listofmarks):
+    for i in range(len(listofmarks)):
+        if listofmarks[i] != -1:
+            Min = listofmarks[0]
+            break
+    for i in range(1,len(listofmarks)):
+        if listofmarks[i]!=-1 and listofmarks[i]<Min:
+            Min=listofmarks[i]
+    return(Min)
+
+
+
+def absentcount(listofmarks):
+    count=0
+    for i in range(len(listofmarks)):
+        if listofmarks[i]==-1:
+              count+=1
+    return(count)
+
+y
+def maxFrequency(listofmarks):
+    Max=0
+    for j in listofmarks:
+        if listofmarks.count(j)>Max and j!=-1:
+            Max=listofmarks.count(j)
+            mark=j
+
+    return(mark,Max)
+
+
+
+marksinFDS=[]
+numberofstudents=int(input("Enter total number of students : "))
+for i in range(numberofstudents):
+    print("Enter marks of student ", i+1 ," : ")
+    marks=int(input())
+    marksinFDS.append(marks)
+
+while True:
+    print("\n\n--------------------MENU--------------------\n")
+    print("1. Total and Average Marks of the Class")
+    print("2. Highest and Lowest Marks in the Class")
+    print("3. Number of Students absent for the test")
+    print("4. Marks with Highest Frequency")
+    print("5. Exit\n")
+    ch=int(input("Enter your Choice (from 1 to 5) :"))
+
+    if ch==1:
+        average(marksinFDS)
+
+    elif ch==2:
+        print("Highest Score in Class : ", Maximum(marksinFDS))
+        print("Lowest Score in Class : ", Minimum(marksinFDS))
+
+    elif ch==3:
+        print("Number of Students absent in the test : ", absentcount(marksinFDS))
+
+    elif ch==4:
+        mark,fr = maxFrequency(marksinFDS)
+        print("Highest frequency is of marks",mark," that is",fr)
+
+    elif ch==5:
+       print("Thanks for using this program!")
+       break
+
+    else:
+        print("!!Wrong Choice!! ")
+
+#p3
+def Add():
+    for i in range(0,m):
+        for j in range(0,n):
+            C[i][j] = A[i][j] + B[i][j]
+    display(C,m,n)
+
+def Sub():
+    for i in range(0,m):
+        for j in range(0,n):
+            C[i][j] = A[i][j] - B[i][j]
+    display(C,m,n)
+
+def Mul():
+    for i in range(0,m):
+        for j in range(0,q):
+            for k in range(0,n):
+                C[i][j]=C[i][j]+ A[i][k] * B[k][j]
+    display(C,m,q)
+
+def Transpose():
+    for i in range(0,n):
+        for j in range(0,m):
+            C[i][j] = A[j][i]
+    display(C,n,m)
+
+def display(C1,m,n):
+    print('Resultant Matrix is:')
+    for i in range(0,m):
+         print('\n')
+         for j in range(0,n):
+            print(' ',C1[i][j],end=" ")
+
+m = int(input('Enter no. of rows for Matrix 1:'))
+n = int(input('Enter no. of columns for Matrix 1:'))
+A = [[0 for j in range(0, n)] for i in range(0, m)]
+
+print('Enter Elements of Matrix A')
+for i in range(0, m):
+    for j in range(0, n):
+       A[i][j] = int(input('\nEnter element A {}{}:'.format(i, j)))
+display(A,m,n)
+
+p = int(input('\nEnter no. of rows for Matrix 2:'))
+q = int(input('\nEnter no. of columns for Matrix 2:'))
+B = [[0 for j in range(0, q)] for i in range(0, p)]
+print('\nEnter Elements of Matrix B')
+for i in range(0, p):
+    for j in range(0, q):
+        B[i][j] = int(input('\nEnter element B{}{}:'.format(i, j)))
+display(B,p,q)
+
+while True:
+    print('\n1.Add Matrices\n2.Subtract Matrices\n3.Multiply Matrices\n4.Transpose of Matrices\n5.Exit')
+    choice = int(input('Enter Choice:'))
+    if choice==1:
+        if m==p and n==q:
+            print('Matrices can be Added')
+            C = [[0 for j in range(0, n)] for i in range(0, m)]
+            Add()
+        else:
+                print('Matrices cannot be Added')
+
+    elif choice==2:
+        if m==p and n==q:
+                print('Matrices can be Subtracted')
+                C = [[0 for j in range(0, n)] for i in range(0, m)]
+                Sub()
+        else:
+                print('Matrices cannot be Subtracted')
+
+    elif choice==3:
+            if n==p:
+                print('Matrices can be Multiplied')
+                C = [[0 for j in range(0, q)] for i in range(0, m)]
+                Mul()
+            else:
+                print('Matrices cannot be Multiplied')
+
+    elif choice==4:
+                C = [[0 for j in range(0, m)] for i in range(0, n)]
+                Transpose()
+
+    elif choice==5:
+         print("Thanks for using this program!")
+         break
+
+    else:
+        print('\nPlease enter a valid choice')
+
+#p4
+def SelectionSort(arr,n):
+    for i in range(0,n-1):
+        Min = i
+        for j in range(i+1,n):
+            if(arr[j]<arr[Min]):
+                Min = j
+        if(Min!=i):
+            temp=arr[i]
+            arr[i]=arr[Min]
+            arr[Min]=temp
+
+    print(arr)
+
+def BubbleSort(arr,n):
+        for i in range(0,n):
+            for j in range(0,n-1):
+                if(arr[j] > arr[j+1]):
+                    temp = arr[j]
+                    arr[j] = arr[j+1]
+                    arr[j+1] = temp
+        print(arr)
+        print("Top Five Scores are...")
+        for i in range (n-1,n-6,-1):
+            print(arr[i])
+    
+        
+#Driver Code
+print("\nhow many no. of students in first year ?")
+n = int(input())
+array = []
+i=0
+for i in range(n):
+     item = int(input("\n Enter percentage marks of student"))
+     array.append(item)
+
+print("You have entered following scores...\n")
+print(array)
+flag =1
+while flag==1:
+    print("Main Menu \n 1. Selection Sort \n 2. Bubble Sort and display Top 5 scores \n 3. Exit")
+    print("\n Enter your Choice: ")
+    choice = int(input())
+    if(choice == 1):
+        print("\n The sorted Scores are...")
+        SelectionSort(array,n)
+        a = input("\n\nDo you want to continue (y/n) :")
+        if a == "y":
+                flag = 1
+        else:
+                flag = 0
+                print("Thanks for using this program!")
+                
+    elif choice==2:
+
+            print("\n The sorted Scores are...")
+            BubbleSort(array,n)
+            a = input("\n\nDo you want to continue (y/n) :")
+            if a == "y":
+                    flag = 1
+            else:
+                    flag = 0
+                    print("Thanks for using this program!")
+    elif choice==3:
+            flag=0
+            print("Thanks for using this program!")
+    else:
+             print('\nPlease enter a valid choice')
+             a = input("\n\nDo you want to continue (y/n) :")
+             if a == "y":
+                  flag = 1
+             else:
+                 flag = 0
+                 print("Thanks for using this program!")
+
+
+#p5
+def partition(arr, low, high):
+    pivot = arr[low]
+    i = low + 1
+    j = high
+    while True:
+        while (i <= j and arr[i] <= pivot):
+            i = i + 1
+        while (i <= j and arr[j] >= pivot):
+            j = j - 1
+        if (j < i):
+            break
+        else:
+            arr[i], arr[j] = arr[j], arr[i]
+
+    arr[low], arr[j] = arr[j], arr[low]
+    return j
+
+def Quicksort(arr, low, high):
+    if (low < high):
+        p = partition(arr, low, high)
+        Quicksort(arr, low, p - 1)
+        Quicksort(arr, p + 1, high)
+
+# Driver Code
+n = int(input("\nHow many students are there?"))
+arr = []
+for i in range(0, n):
+    item = float(input("\nEnter percentage marks"))
+    arr.append(item)
+
+print("You have entered following scores...\n")
+print(arr)
+
+print("\n The sorted Scores are...")
+Quicksort(arr, 0, n - 1)
+print(arr)
+print("Top Five Scores are...")
+for i in range(len(arr) - 1, len(arr) - 6, -1):
+    print(arr[i])
+
+#p6
+def InsertSort(arr, n):
+    for i in range(1, n):
+        temp = arr[i]
+        j = i-1
+        while (j>=0 and temp< arr[j]):
+            arr[j+1] = arr[j]
+            j = j- 1
+        arr[j+1] = temp
+    print(arr)
+
+def ShellSort(arr, n):
+    gap = n // 2
+    while(gap>=1):
+        for j in range(gap, n):
+            i=j-gap
+            while (i>=0):
+                if arr[i+gap]>arr[i]:
+                    break
+                else:
+                    arr[i+gap], arr[i] = arr[i], arr[i+gap]
+                i=i-gap
+        gap = gap // 2
+    print(arr)
+    print("Top Five Scores are...")
+    for i in range(n- 1, n- 6, -1):
+        print(arr[i])
+
+# Driver Code
+print("\nHow many students are there?")
+n = int(input())
+array = []
+i = 0
+for i in range(n):
+    print("\n Enter percentage marks")
+    item = float(input())
+    array.append(item)
+
+print("You have entered following scores...\n")
+print(array)
+
+while True:
+    print("Main Menu    \n 1. Insertion Sort\n 2. Shell Sort \n 3. Exit")
+    print("\n Enter your Choice: ")
+    choice = int(input())
+    if (choice == 1):
+        print("\n The sorted Scores are...")
+        InsertSort(array, n)
+
+    elif choice == 2:
+        print("\n The sorted Scores are...")
+        ShellSort(array, n)
+
+    elif choice == 3:
+        print("Thanks for using this program!")
+        break
+
+    else:
+        print('\nPlease enter a valid choice')
+
+
+#p7
+//  STANDARD LINKED LIST
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+class node{
+	public:
+		string name;
+		char van,but;
+		node *next;
+		node *null;
+		node(){
+			next=null;
+		};
+};
+class List
+{
+	node *head;
+	public:
+		List()
+		{
+			head = NULL;
+		}
+	
+		void insertAtEnd(string s,char v,char b)
+		
+		{
+			node *p = new node();
+			p->van = v;
+			p->name=s;
+			p->but=b;
+			if (head == NULL)
+			{
+				head = p;
+			}
+			else
+			{
+				
+				node *ptr = head;
+				while (ptr->next != NULL)
+				{
+					ptr = ptr->next;
+				}
+				ptr->next = p;
+			}
+		}
+		
+		void display()
+		{
+			int count=0;
+			if (head == NULL){
+				cout<<"List is empty"<<endl;
+			}
+			else
+			{
+				
+				node *p = head;
+				cout<<"Linked List: \n";
+				while (p != NULL){
+					cout<<p->name<<"\t"<<p->van<<"\t"<<p->but<<"\n";
+					count++;
+					p = p->next;
+				}
+			
+			}
+			cout<<"Number of elemnets in linked list:"<<count;
+		}	
+		void disp_vanAndbut()
+		{
+			int count=0;
+			if (head == NULL){
+				cout<<"List is empty"<<endl;
+			}
+			else
+			{
+				
+				node *p = head;
+				cout<<"students who like both vanila and butterscotch.......\n";
+				while (p != NULL)
+				{
+				
+					if(p->van=='y' && p->but=='y')
+					{
+						cout<<p->name<<"\t"<<p->van<<"\t"<<p->but<<"\n";
+						count++;
+					}
+					p = p->next;				
+				}
+			
+			}
+			cout<<"Number of elemnets in linked list:"<<count;
+		}	
+		void disp_EitherVanOrBut()
+		{
+			int count=0;
+			if (head == NULL){
+				cout<<"List is empty"<<endl;
+			}
+			else
+			{
+				
+				node *p = head;
+				cout<<"Students who like Either vanila Or Butterscotch.......\n";
+				while (p != NULL)
+				{
+				
+					if(!((p->van=='y' && p->but=='y')||(p->van=='n' && p->but=='n')))
+					{
+						cout<<p->name<<"\n";
+						count++;
+					}
+					p = p->next;				
+				}
+			
+			}
+			cout<<"Number of elemnets in linked list:"<<count;
+		}	
+		void disp_NitherVanNorBut()
+		{
+			int count=0;
+			if (head == NULL){
+				cout<<"List is empty"<<endl;
+			}
+			else
+			{
+				
+				node *p = head;
+				cout<<"Students who like Either vanila Or Butterscotch.......\n";
+				while (p != NULL)
+				{
+				
+					if(p->van=='n' && p->but=='n')
+					{
+						cout<<p->name<<"\n";
+						count++;
+					}
+					p = p->next;				
+				}
+			
+			}
+			cout<<"Number of elemnets in linked list:"<<count;
+		}	
+	
+	
+};
+
+int main()
+{
+	
+	printf("1 to Insert data...");
+	printf("\n2 Display data.....");
+	printf("\n3 Display Students who like both vanila and butterscotch......");
+	printf("\n4 Display Students who like Either Vanila Or Butterscotch......");
+	printf("\n4 Display Students who like Nither Vanila Nor Butterscotch......");
+	printf("\n0 to Exit");
+	
+	int choice,p;
+	char van,but;
+    string nm;
+	List ll;
+	
+		do 
+		{
+			cout<<"\nEnter Your Choice: ";
+			cin>>choice;
+			switch (choice)
+			{
+				case 1:
+					cout<<"Enter name:  ";
+					cin>>nm;
+					cout<<"Do you like vanilla y/n: ";
+					cin>>van;
+					cout<<"Do you like butterscotch y/n: ";
+					cin>>but;
+					ll.insertAtEnd(nm,van,but);
+					break;
+				
+				case 2:
+					ll.display();
+					break;
+				
+				case 3:
+					ll.disp_vanAndbut();
+					break;
+					
+				case 4:
+					ll.disp_EitherVanOrBut();
+					break;
+				case 5:
+					ll.disp_NitherVanNorBut();
+					break;
+			
+						
+			}
+		} while (choice != 0);
+	
+}
+
+#p8
+#include <stdlib.h>
+#include <iostream>
+using namespace std;
+#define MAX 50
+struct node
+{
+  char c;
+  int ind;
+  struct node *next, *down;
+} *head;
+class GList
+{
+public:
+  GList();
+  struct node *create(char *);
+  void display(struct node *);
+  int depth(node *p);
+  int max(int i, int j);
+};
+GList ::GList()
+{
+  head = NULL;
+}
+node *GList ::create(char *a)
+{
+  static int i;
+  node *New;
+  if (a[i] == '\0')
+    return NULL;
+  for (; a[i] == ',' || a[i] == ' '; i++)
+    ;
+  New = new node;
+  if (New == NULL)
+  {
+    cout << "Allocation failed!!!!!!";
+    return NULL;
+  }
+  if (a[i] == '{')
+  {
+    New->ind = 1;
+    New->c = '{';
+    New->next = NULL;
+    i++;
+    New->down = create(a);
+    if (a[i] != '\0')
+      New->next = create(a);
+    else
+    {
+      i = 0;
+    }
+  }
+  else if (a[i] != '}' && a[i] != ',')
+  {
+    New->ind = 0;
+    New->c = a[i];
+    New->down = NULL;
+    i++;
+    New->next = create(a);
+  }
+  else if (a[i] == '}')
+  {
+    i++;
+    free(New);
+    return NULL;
+  }
+
+  return New;
+}
+int GList::max(int i, int j)
+{
+  return i > j ? i : j;
+}
+void GList::display(node *temp)
+{
+  if (temp == NULL)
+    return;
+  if (temp->ind == 1)
+  {
+    cout << "{";
+    display(temp->down);
+    cout << "}";
+    if (temp->next != NULL)
+      display(temp->next);
+  }
+  else
+  {
+    cout << " " << temp->c;
+    display(temp->next);
+  }
+}
+int GList ::depth(node *temp)
+{
+  int i = 0, j = 0;
+  if (temp == NULL)
+    return 0;
+  if (temp->ind = 1)
+  {
+    j = 1 + (depth(temp->down));
+    if (temp->next != NULL)
+      i = depth(temp->next);
+  }
+  else
+    i = depth(temp->next);
+  return max(i, j);
+}
+int main()
+{
+  int choice, d;
+  char set[MAX];
+  node *start = NULL;
+  GList obj;
+  char ans;
+  do
+  {
+    cout << "\n\t\tThe program for GLL:";
+    cout << "\n\t1.create";
+    cout << "\n\t2.display";
+    cout << "\n\t3.depth";
+    cout << "\n\nEnter your choice :";
+    cin >> (choice);
+    switch (choice)
+    {
+    case 1:
+      set[0] = '\0';
+      cout << "\nEnter string";
+      cin >> set;
+      start = obj.create(set);
+      break;
+    case 2:
+      cout << "\nDisplaying List :";
+      obj.display(start);
+      break;
+    case 3:
+      if (start == NULL)
+        cout << "\nDepth of the list is :0";
+      else
+      {
+        d = obj.depth(start);
+        cout << "\nDepth of the list is :" << d - 1;
+      }
+      break;
+    default:
+      exit(0);
+      break;
+    }
+    cout << "\nDo you want to continue?";
+    cin >> ans;
+  } while (ans == 'y' || ans == 'Y');
+  return 0;
+}
+
+#p9
+#include <iostream>
+#include <string.h>
+#define max 50
+using namespace std;
+class STACK
+{
+private:
+	char a[max];
+	int top;
+
+public:
+	STACK()
+	{
+		top = -1;
+	}
+	void push(char);
+	void reverse();
+	void convert(char[]);
+	void palindrome();
+};
+
+void STACK::push(char c)
+{
+	top++;
+	a[top] = c;
+	a[top + 1] = '\0';
+	// cout<<endl<<c<<" is pushed on stack ...";
+}
+void STACK::reverse()
+{
+	char str[max], j = 0;
+
+	for (int i = top; i >= 0; i--)
+	{
+		cout << a[i];
+		str[j] = a[i];
+		j++;
+	}
+	cout << "\n\nReverse string is : " << str;
+	cout << endl;
+}
+void STACK::convert(char str[])
+{
+	int j, k, len = strlen(str);
+	for (j = 0, k = 0; j < len; j++)
+	{
+		if ((str[j] >= 97 && str[j] <= 122) || (str[j] >= 65 && str[j] <= 90))
+		{
+			if (str[j] <= 90 && str[j] >= 65)
+			{
+				str[k] = (str[j] + 32);
+			}
+			else
+			{
+				str[k] = str[j];
+			}
+			k++;
+		}
+	}
+	str[k] = '\0';
+	cout << endl
+		 << "Converted String : " << str << "\n";
+}
+void STACK::palindrome()
+{
+	char str[max];
+	int i, j;
+	for (i = top, j = 0; i >= 0; i--, j++)
+	{
+		str[j] = a[i];
+	}
+	str[j] = '\0';
+	if (strcmp(str, a) == 0)
+		cout << "\n\nString is palindrome...";
+	else
+		cout << "\n\nString is not palindrome...";
+}
+
+int main()
+{
+	STACK stack;
+	char str[max];
+	int i = 0;
+	cout << "\nEnter string to be reversed and check is it palindrome or not : \n\n";
+	cin.getline(str, 50);
+	stack.convert(str);
+	while (str[i] != '\0')
+	{
+		stack.push(str[i]);
+		i++;
+	}
+	stack.palindrome();
+	stack.reverse();
+}
+
+#p10
+#include <iostream>
+using namespace std;
+#define size 10
+class stackexp
+{
+    int top;
+    char stk[size];
+
+public:
+    stackexp()
+    {
+        top = -1;
+    }
+    void push(char);
+    char pop();
+    int isfull();
+    int isempty();
+};
+
+void stackexp::push(char x)
+{
+    top = top + 1;
+    stk[top] = x;
+}
+
+char stackexp::pop()
+{
+    char s;
+    s = stk[top];
+    top = top - 1;
+    return s;
+}
+
+int stackexp::isfull()
+{
+    if (top == size)
+        return 1;
+    else
+        return 0;
+}
+
+int stackexp::isempty()
+{
+    if (top == -1)
+        return 1;
+    else
+        return 0;
+}
+
+int main()
+{
+    stackexp s1;
+    char exp[20], ch, x;
+    int i = 0;
+    cout << "\n\t!! Parenthesis Checker..!!!!" << endl;
+    cout << "\nEnter the expression to check whether it is in well paranthesized or not :  ";
+    cin >> exp;
+
+    while (exp[i] != '\0')
+    {
+        ch = exp[i];
+        switch (ch)
+        {
+        case '(':
+            s1.push(ch);
+            break;
+        case '[':
+            s1.push(ch);
+            break;
+        case '{':
+            s1.push(ch);
+            break;
+        case ')':
+            x = s1.pop();
+            if (x != '(')
+            {
+                cout << "\nSorry !!! Not well parenthesized....\n";
+                goto end;
+            }
+            break;
+        case ']':
+            x = s1.pop();
+            if (x != '[')
+            {
+                cout << "\nSorry !!! Not well parenthesized....\n";
+                goto end;
+            }
+            break;
+        case '}':
+            x = s1.pop();
+            if (x != '{')
+            {
+                cout << "\nSorry !!! Not well parenthesized....\n";
+                goto end;
+            }
+            break;
+        default:
+            break;
+        } 
+        i = i + 1;
+    } 
+    if (s1.isempty())
+    {
+        cout << "\nExpression is well parenthesised...\n";
+    }
+    else
+    {
+        cout << "\nSorry !!! Not well parenthesized....\n";
+    }
+end:
+    return 0;
+}
+
+#p11
+#include <iostream>
+#define MAX 10
+using namespace std;
+class Queue
+{
+private:
+    int data[MAX];
+    int front, rear;
+
+public:
+    Queue()
+    {
+        front = rear = -1;
+    }
+    int isempty();
+    int isfull();
+    void enqueue(int);
+    int delqueue();
+    void display();
+};
+int Queue::isempty()
+{
+    if (front == rear)
+        return (1);
+    else
+        return (0);
+}
+int Queue::isfull()
+{
+    if (rear == MAX - 1)
+        return (1);
+    else
+        return (0);
+}
+void Queue::enqueue(int x)
+{
+    rear++;
+    data[rear] = x;
+}
+int Queue::delqueue()
+{
+    front++;
+    return (data[front]);
+}
+void Queue::display()
+{
+    int i;
+    cout << "\n";
+    for (i = front + 1; i <= rear; i++)
+        cout << data[i] << " ";
+}
+int main()
+{
+    Queue Q;
+    int ch, x;
+    do
+    {
+        cout << "\n 1.Insert Job\n 2.Delete Job\n 3.Display\n 4.Exit\n Enter your choice : ";
+        cin >> ch;
+        switch (ch)
+        {
+        case 1:
+            if (!Q.isfull())
+            {
+                cout << "\n Enter Job number : \n";
+                cin >> x;
+                Q.enqueue(x);
+                cout << endl;
+            }
+            else
+                cout << "Queue is overflow!!!\n\n";
+            break;
+        case 2:
+            if (!Q.isempty())
+                cout << "\n Deleted Job = " << Q.delqueue() << endl;
+            else
+            {
+                cout << "\n Queue is underflow!!!\n\n";
+            }
+            cout << "\nRemaining Jobs : \n";
+            Q.display();
+            break;
+        case 3:
+            if (!Q.isempty())
+            {
+                cout << "\n Queue contains : \n";
+                Q.display();
+            }
+            else
+                cout << "\n Queue is empty!!!\n\n";
+            break;
+        case 4:
+            cout << "\n Exiting Program.....";
+        }
+    } while (ch != 4);
+    return 0;
+}
+
+#p12
+#include <iostream>
+using namespace std;
+#define MAX_SIZE 10
+int arr[MAX_SIZE];
+int front, rear;
+
+class Deque
+{
+public:
+    Deque()
+    {
+        front = -1;
+        rear = -1;
+    }
+
+    void insertFront(int value)
+    {
+        if ((front == 0 && rear == MAX_SIZE - 1) || front == rear + 1)
+        {
+            cout << "Deque is full. Cannot insert at the front." << endl;
+        }
+
+        if (front == -1)
+        {
+            front = rear = 0;
+        }
+        else if (front == 0)
+        {
+            front = MAX_SIZE - 1;
+        }
+        else
+        {
+            front--;
+        }
+
+        arr[front] = value;
+        cout << "Inserted " << value << " at the front." << endl;
+    }
+
+    void insertRear(int value)
+    {
+        if ((front == 0 && rear == MAX_SIZE - 1) || front == rear + 1)
+        {
+            cout << "Deque is full. Cannot insert at the rear." << endl;
+            return;
+        }
+
+        if (front == -1)
+        {
+            front = rear = 0;
+        }
+        else if (rear == MAX_SIZE - 1)
+        {
+            rear = 0;
+        }
+        else
+        {
+            rear++;
+        }
+
+        arr[rear] = value;
+        cout << "Inserted " << value << " at the rear." << endl;
+    }
+
+    void deleteFront()
+    {
+        if (front == -1)
+        {
+            cout << "Deque is empty. Cannot delete from the front." << endl;
+            return;
+        }
+
+        cout << "Deleted " << arr[front] << " from the front." << endl;
+
+        if (front == rear)
+        {
+            front = rear = -1;
+        }
+        else if (front == MAX_SIZE - 1)
+        {
+            front = 0;
+        }
+        else
+        {
+            front++;
+        }
+    }
+
+    void deleteRear()
+    {
+        if (front == -1)
+        {
+            cout << "Deque is empty. Cannot delete from the rear." << endl;
+            return;
+        }
+
+        cout << "Deleted " << arr[rear] << " from the rear." << endl;
+
+        if (front == rear)
+        {
+            front = rear = -1;
+        }
+        else if (rear == 0)
+        {
+            rear = MAX_SIZE - 1;
+        }
+        else
+        {
+            rear--;
+        }
+    }
+
+    void display()
+    {
+        if (front == -1)
+        {
+            cout << "Deque is empty." << endl;
+            return;
+        }
+
+        cout << "Deque elements: ";
+        int i = front;
+        do
+        {
+            cout << arr[i] << " ";
+            i = (i + 1) % MAX_SIZE;
+        } while (i != (rear + 1) % MAX_SIZE);
+        cout << endl;
+    }
+};
+
+int main()
+{
+    int c, i;
+
+    Deque d;
+    do
+    {
+        // perform switch opeartion {
+        cout << "\n 1.insert at beginning";
+        cout << "\n 2.insert at end";
+        cout << "\n 3.show";
+        cout << "\n 4.deletion from front";
+        cout << "\n 5.deletion from rear";
+        cout << "\n 6.exit";
+        cout << "\n enter your choice:";
+        cin >> c;
+        switch (c)
+        {
+        case 1:
+            cout << "enter the element to be inserted";
+            cin >> i;
+            d.insertFront(i);
+            break;
+        case 2:
+            cout << "enter the element to be inserted";
+            cin >> i;
+            d.insertRear(i);
+            break;
+        case 3:
+            d.display();
+            break;
+        case 4:
+            d.deleteFront();
+            break;
+        case 5:
+            d.deleteRear();
+            break;
+        case 6:
+            exit(1);
+            break;
+        default:
+            cout << "invalid choice";
+            break;
+        }
+    } while (c != 7);
+}
+
+#p13
+#include <iostream>
+#include <stdlib.h>
+#define size 5
+using namespace std;
+class pizza
+{
+    int front, rear, q[size];
+
+public:
+    pizza()
+    {
+        front = -1;
+        rear = -1;
+    }
+    int isfull();
+    int isempty();
+    void add();
+    void serve();
+    void display();
+};
+int pizza::isfull()
+{
+    if ((front == 0 && rear == size - 1) || front == rear + 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+int pizza::isempty()
+{
+    if (front == -1 && rear == -1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+void pizza::add()
+{
+    if (isfull() == 0)
+    {
+        cout << "\n Enter the Pizza ID: ";
+        if (front == -1 && rear == -1)
+        {
+            front = 0;
+            rear = 0;
+            cin >> q[rear];
+        }
+        else
+        {
+            rear = (rear + 1) % size;
+            cin >> q[rear];
+        }
+        char c;
+        cout << " Do you want to add another order ? ";
+        cin >> c;
+        if (c == 'y' || c == 'Y')
+            add();
+    }
+    else
+    {
+        cout << "\n Orders are full ";
+    }
+}
+void pizza::serve()
+{
+    if (isempty() == 0)
+    {
+        if (front == rear)
+        {
+            cout << "\n Order served is : " << q[front];
+            front = -1;
+            rear = -1;
+        }
+        else
+        {
+            cout << "\n Order served is : " << q[front];
+            front = (front + 1) % size;
+        }
+    }
+    else
+    {
+        cout << "\n No pending orders ";
+    }
+}
+void pizza::display()
+{
+    if (isempty() == 0)
+    {
+        for (int i = front; i != rear; i = (i + 1) % size)
+        {
+            cout << q[i] << "<- ";
+        }
+        cout << q[rear];
+    }
+    else
+    {
+        cout << "\n No pending orders";
+    }
+}
+int main()
+{
+
+    pizza p1;
+    int ch;
+    while (1)
+    {
+        cout << "\n\n * * * * PIZZA PARLOUR * * * * \n\n";
+        cout << "1. Add a Pizza \n";
+        cout << "2. Display the Orders \n";
+        cout << "3. Serve a pizza \n";
+        cout << "4. Exit \n Enter your choice : ";
+        cin >> ch;
+        switch (ch)
+        {
+        case 1:
+            p1.add();
+            break;
+        case 2:
+            p1.display();
+            break;
+        case 3:
+            p1.serve();
+            break;
+        case 4:
+            exit(0);
+        default:
+            cout << "Invalid choice ";
+        }
+    }
+
+    return 0;
+}`;
+                    break;
+            }
+
+            navigator.clipboard.writeText("#"+program+"\n"+textToCopy).then(() => {
+                alert('Copied to clipboard: ' + textToCopy);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
