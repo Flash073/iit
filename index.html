@@ -3144,7 +3144,7 @@ int main()
                     break;
             }
 
-            navigator.clipboard.writeText("#"+program+"\n"+textToCopy).then(() => {
+            navigator.clipboard.writeText(textToCopy).then(() => {
                 alert('Copied to clipboard: ' + textToCopy);
             }).catch(err => {
                 console.error('Failed to copy: ', err);
